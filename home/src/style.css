@@ -1,0 +1,112 @@
+:root {
+  --reactColor: #149eca;
+  --vueColor: #41b883;
+  --gradient: linear-gradient(to right, var(--reactColor), var(--vueColor));
+}
+
+@font-face {
+  font-family: myFont;
+  src: url(font/ModernDOS9x16.ttf);
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #212121;
+  font-family: myFont;
+}
+
+.container {
+  display: flex;
+  /* position: relative; */
+  /* overflow: hidden; */
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.container-title {
+  display: flex;
+  margin: 100px 0 100px 0;
+  justify-content: center;
+}
+
+.lights {
+  position: fixed;
+  width: 50%;
+  height: 100%;
+  transition: box-shadow 0.5s;
+  z-index: -1;
+}
+
+#vue-light {
+  right: 0;
+  bottom: 0;
+  box-shadow: inset -20px -20px 30px -20px var(--vueColor);
+}
+#react-light {
+  left: 0;
+  bottom: 0;
+  box-shadow: inset 20px -20px 30px -20px var(--reactColor);
+}
+
+#title {
+  font-size: 60px;
+  text-transform: uppercase;
+  color: transparent;
+  background: var(--gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  transition: color 0.5s;
+}
+
+.container-content {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  justify-items: center;
+  /* background-color: brown; */
+}
+.container-images {
+  /* background-color: pink; */
+  overflow: hidden;
+  display: flex;
+  align-items: end;
+  position: relative;
+  width: 530px;
+  height: 100%;
+}
+
+.container-icon {
+  background-color: green;
+  display: flex;
+  justify-content: center;
+}
+
+#blue-image {
+  overflow: hidden;
+  /* background-color: red; */
+  position: relative;
+  display: flex;
+  align-items: end;
+  width: 50%;
+  height: 100%;
+  transition: width 0.5s;
+}
+#blue-image img {
+  width: 530px;
+}
+
+.my-image {
+  position: absolute;
+  bottom: -2px;
+  right: -1px;
+  height: auto;
+  width: 100%;
+}
+
+.icon {
+  width: 180px;
+  transition: transform 0.5s;
+}

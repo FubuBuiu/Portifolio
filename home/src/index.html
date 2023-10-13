@@ -1,0 +1,44 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="scripts.js"></script>
+    <title>Home Portfolio</title>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <div class="container-title">
+          <label id="title">Acesse meu portfólio</label>
+        </div>
+        <div class="container-content">
+          <img
+            id="react-icon"
+            class="icon"
+            onmouseover="mouseHoverIcon(id)"
+            onmouseleave="mouseLeaveIcon()"
+            src="images/react_logo.svg"
+            alt="react_logo"
+          />
+          <div class="container-images">
+            <img class="my-image" src="images/me_green.png" alt="me_green" />
+            <div id="blue-image">
+              <img src="images/me_blue.png" alt="me_blue" />
+            </div>
+          </div>
+          <img
+            id="vue-icon"
+            class="icon"
+            onmouseover="mouseHoverIcon(id)"
+            onmouseleave="mouseLeaveIcon()"
+            src="images/vue_logo.svg"
+            alt="vue_logo"
+          />
+        </div>
+        <div class="lights" id="vue-light" />
+        <div class="lights" id="react-light" />
+      </div>
+    </main>
+  </body>
+</html>
