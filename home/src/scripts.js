@@ -1,34 +1,77 @@
 const vueColor = "#41b883";
 const reactColor = "#149eca";
-function mouseHoverIcon(iconId) {
-  const icon = document.getElementById(iconId);
-  const title = document.getElementById("title");
-  const blueImage = document.getElementById("blue-image");
-  icon.style.transform = "scale(1.1)";
-  if (iconId === "vue-icon") {
-    const vueLight = document.getElementById("vue-light");
-    vueLight.style.boxShadow = `inset -30px -30px 30px -20px ${vueColor}`;
-    title.style.color = vueColor;
-    blueImage.style.width = "0%";
+
+function clickAction(id) {
+  if (id === "vue-button") {
+    if (window.innerWidth <= 900) {
+      const containerBlueImage = document.querySelector(
+        ".container-blue-image"
+      );
+      const title = document.getElementById("title");
+
+      title.style.color = vueColor;
+      containerBlueImage.style.width = "0%";
+      setTimeout(() => {
+        window.location.href = "link-do-portfólio-vue";
+      }, 700);
+      return;
+    }
+
+    window.location.href = "link-do-portfólio-vue";
   } else {
-    const reactLight = document.getElementById("react-light");
-    reactLight.style.boxShadow = `inset 30px -30px 30px -20px ${reactColor}`;
-    title.style.color = reactColor;
-    blueImage.style.width = "100%";
+    if (window.innerWidth <= 900) {
+      const containerBlueImage = document.querySelector(
+        ".container-blue-image"
+      );
+      const title = document.getElementById("title");
+
+      title.style.color = reactColor;
+      containerBlueImage.style.width = "100%";
+      setTimeout(() => {
+        window.location.href = "link-do-portfólio-react";
+      }, 700);
+      return;
+    }
+    window.location.href = "link-do-portfólio-react";
+  }
+}
+
+function mouseHoverIcon(iconId) {
+  if (window.innerWidth > 900) {
+    const title = document.getElementById("title");
+    const containerBlueImage = document.querySelector(".container-blue-image");
+
+    if (iconId === "vue-icon") {
+      const vueButton = document.getElementById("vue-button");
+      const vueLight = document.getElementById("vue-light");
+      vueButton.style.transform = "scale(1.1)";
+      vueLight.style.boxShadow = `inset -30px -30px 30px -20px ${vueColor}`;
+      title.style.color = vueColor;
+      containerBlueImage.style.width = "0%";
+    } else {
+      const reactButton = document.getElementById("react-button");
+      const reactLight = document.getElementById("react-light");
+      reactButton.style.transform = "scale(1.1)";
+      reactLight.style.boxShadow = `inset 30px -30px 30px -20px ${reactColor}`;
+      title.style.color = reactColor;
+      containerBlueImage.style.width = "100%";
+    }
   }
 }
 
 function mouseLeaveIcon() {
-  const vueIcon = document.getElementById("vue-icon");
-  const reactIcon = document.getElementById("react-icon");
-  const vueLight = document.getElementById("vue-light");
-  const reactLight = document.getElementById("react-light");
-  const title = document.getElementById("title");
-  const blueImage = document.getElementById("blue-image");
-  vueIcon.style.transform = "scale(1)";
-  reactIcon.style.transform = "scale(1)";
-  vueLight.style.boxShadow = `inset -20px -20px 30px -20px ${vueColor}`;
-  reactLight.style.boxShadow = `inset 20px -20px 30px -20px ${reactColor}`;
-  title.style.color = "transparent";
-  blueImage.style.width = "50%";
+  if (window.innerHeight > 900) {
+    const vueButton = document.getElementById("vue-button");
+    const reactButton = document.getElementById("react-button");
+    const vueLight = document.getElementById("vue-light");
+    const reactLight = document.getElementById("react-light");
+    const title = document.getElementById("title");
+    const containerBlueImage = document.querySelector(".container-blue-image");
+    vueButton.style.transform = "scale(1)";
+    reactButton.style.transform = "scale(1)";
+    vueLight.style.boxShadow = `inset -20px -20px 30px -20px ${vueColor}`;
+    reactLight.style.boxShadow = `inset 20px -20px 30px -20px ${reactColor}`;
+    title.style.color = "transparent";
+    containerBlueImage.style.width = "50%";
+  }
 }

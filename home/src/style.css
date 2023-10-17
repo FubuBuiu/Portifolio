@@ -1,7 +1,12 @@
 :root {
   --reactColor: #149eca;
   --vueColor: #41b883;
-  --gradient: linear-gradient(to right, var(--reactColor), var(--vueColor));
+  --backgroundColor: #212121;
+  --titleGradient: linear-gradient(
+    to right,
+    var(--reactColor) 45%,
+    var(--vueColor) 55%
+  );
 }
 
 @font-face {
@@ -12,14 +17,33 @@
 body {
   padding: 0;
   margin: 0;
-  background-color: #212121;
-  font-family: myFont;
+  background-color: var(--backgroundColor);
+}
+
+span {
+  display: none;
+}
+
+button {
+  color: white;
+  background-color: transparent;
+  border: none;
+  max-width: 180px;
+  min-width: 140px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 0;
+  transition: transform 0.5s;
+  -webkit-transition: transform 0.5s;
+}
+
+body,
+button {
+  font-family: myFont !important;
 }
 
 .container {
   display: flex;
-  /* position: relative; */
-  /* overflow: hidden; */
   flex-direction: column;
   width: 100%;
   height: 100%;
@@ -27,8 +51,8 @@ body {
 
 .container-title {
   display: flex;
-  margin: 100px 0 100px 0;
   justify-content: center;
+  margin: 100px 0 100px 0;
 }
 
 .lights {
@@ -36,6 +60,7 @@ body {
   width: 50%;
   height: 100%;
   transition: box-shadow 0.5s;
+  -webkit-transition: box-shadow 0.5s;
   z-index: -1;
 }
 
@@ -52,12 +77,14 @@ body {
 
 #title {
   font-size: 60px;
+  text-align: center;
   text-transform: uppercase;
   color: transparent;
-  background: var(--gradient);
+  background: var(--titleGradient);
   background-clip: text;
   -webkit-background-clip: text;
   transition: color 0.5s;
+  -webkit-transition: color 0.5s;
 }
 
 .container-content {
@@ -65,48 +92,141 @@ body {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
+  align-content: end;
   justify-items: center;
-  /* background-color: brown; */
 }
+
 .container-images {
-  /* background-color: pink; */
   overflow: hidden;
   display: flex;
   align-items: end;
   position: relative;
   width: 530px;
-  height: 100%;
+  height: auto;
 }
 
-.container-icon {
-  background-color: green;
-  display: flex;
-  justify-content: center;
-}
-
-#blue-image {
-  overflow: hidden;
-  /* background-color: red; */
-  position: relative;
+.container-blue-image {
+  position: absolute;
   display: flex;
   align-items: end;
+  overflow: hidden;
   width: 50%;
   height: 100%;
   transition: width 0.5s;
+  -webkit-transition: width 0.5s;
 }
-#blue-image img {
+
+.container-blue-image img {
+  position: absolute;
+  height: auto;
   width: 530px;
 }
 
 .my-image {
-  position: absolute;
-  bottom: -2px;
-  right: -1px;
   height: auto;
   width: 100%;
 }
 
 .icon {
-  width: 180px;
-  transition: transform 0.5s;
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 900px), (max-device-width: 900px) {
+  button {
+    padding: 15px;
+    margin: 26px 0 0 0;
+    max-width: fit-content;
+    min-width: fit-content;
+    height: fit-content;
+    display: flex;
+    border: 3px solid;
+    border-radius: 13px;
+    align-items: center;
+    font-size: 30px;
+    transition: filter 0.3s;
+  }
+  button:active {
+    filter: brightness(0.7);
+  }
+  button:active img {
+    filter: brightness(0.7);
+  }
+
+  span {
+    display: block;
+    margin-left: 10px;
+  }
+
+  .lights {
+    display: none;
+  }
+
+  #vue-button {
+    order: 2;
+    border-color: var(--vueColor);
+  }
+
+  #react-button {
+    order: 3;
+    border-color: var(--reactColor);
+  }
+
+  .logo {
+    width: 42px;
+    filter: brightness(1);
+  }
+
+  .container-title {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0 30px 0;
+  }
+
+  #title {
+    font-size: 7vw;
+  }
+
+  .container-content {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+  }
+
+  .container-images {
+    order: 1;
+    grid-area: item1;
+  }
+
+  .container-images,
+  #blue-image {
+    width: 53vw;
+  }
+
+  .gradient {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60%;
+    background-image: linear-gradient(
+      to top,
+      var(--backgroundColor) 5%,
+      transparent 100%
+    );
+  }
+
+  @media screen and (max-width: 750px), (max-device-width: 750px) {
+    .container-images,
+    #blue-image {
+      width: 65vw;
+    }
+  }
+  @media screen and (max-width: 500px), (max-device-width: 500px) {
+    .container-images {
+      width: 100%;
+    }
+    #blue-image {
+      width: 100vw;
+    }
+  }
 }

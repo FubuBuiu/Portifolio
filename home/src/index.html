@@ -3,7 +3,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <script src="scripts.js"></script>
     <title>Home Portfolio</title>
   </head>
   <body>
@@ -13,32 +12,45 @@
           <label id="title">Acesse meu portfólio</label>
         </div>
         <div class="container-content">
-          <img
-            id="react-icon"
-            class="icon"
-            onmouseover="mouseHoverIcon(id)"
-            onmouseleave="mouseLeaveIcon()"
-            src="images/react_logo.svg"
-            alt="react_logo"
-          />
+          <button id="react-button" onclick="clickAction(id)">
+            <img
+              class="logo"
+              id="react-icon"
+              onmouseover="mouseHoverIcon(id)"
+              onmouseleave="mouseLeaveIcon()"
+              src="svg/react_logo.svg"
+              alt="react_logo"
+            />
+            <span>React</span>
+          </button>
           <div class="container-images">
-            <img class="my-image" src="images/me_green.png" alt="me_green" />
-            <div id="blue-image">
-              <img src="images/me_blue.png" alt="me_blue" />
+            <img
+              id="green-image"
+              class="my-image"
+              src="images/me_green.png"
+              alt="me_green"
+            />
+            <div class="container-blue-image">
+              <img id="blue-image" src="images/me_blue.png" alt="me_blue" />
             </div>
+            <div class="gradient"></div>
           </div>
-          <img
-            id="vue-icon"
-            class="icon"
-            onmouseover="mouseHoverIcon(id)"
-            onmouseleave="mouseLeaveIcon()"
-            src="images/vue_logo.svg"
-            alt="vue_logo"
-          />
+          <button id="vue-button" onclick="clickAction(id)">
+            <img
+              class="logo"
+              id="vue-icon"
+              onmouseover="mouseHoverIcon(id)"
+              onmouseleave="mouseLeaveIcon()"
+              src="svg/vue_logo.svg"
+              alt="vue_logo"
+            />
+            <span>Vue</span>
+          </button>
         </div>
         <div class="lights" id="vue-light" />
         <div class="lights" id="react-light" />
       </div>
     </main>
+    <script src="scripts.js"></script>
   </body>
 </html>
