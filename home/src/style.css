@@ -39,7 +39,7 @@ button {
 
 body,
 button {
-  font-family: myFont !important;
+  font-family: myFont;
 }
 
 .container {
