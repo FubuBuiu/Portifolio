@@ -1,0 +1,25 @@
+@font-face {
+  font-family: myFont;
+  src: url(../../font/ModernDOS9x16.ttf);
+}
+
+$theme-settings: (
+  "primary-main-color": #00dbfb,
+  "primary-dark-color": #006272,
+  "text-primary-color": #00dbfb,
+  //Light mode colors
+  "secundary-light-mode-color": #006272,
+  "contrast-text-light-mode-color": #ffffff,
+  "background-light-mode-color": #ffffff,
+  //Dark mode colors
+  "contrast-text-dark-mode-color": #212121,
+  "secundary-dark-mode-color": #2d2d2d,
+  "background-dark-mode-color": #212121,
+  "font-family": myfont,
+);
+
+:export {
+  @each $name, $settings in $theme-settings {
+    #{$name}: $settings;
+  }
+}
