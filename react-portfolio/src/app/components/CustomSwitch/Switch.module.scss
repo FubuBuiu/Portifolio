@@ -1,0 +1,61 @@
+// .background {
+//   position: relative;
+//   width: 70px;
+//   height: 35px;
+//   .slider {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     width: 100%;
+//     height: 100%;
+//     content: "";
+//     background-color: red;
+//     border-radius: 100px;
+//     cursor: pointer;
+//     transition: background-color 0.4s;
+//     animation: normal;
+//   }
+//   .slider:before {
+//     // $svg: url(../../../icons/light_mode.svg);
+//     position: absolute;
+//     content: "";
+//     // background-image: $svg;
+//     // -webkit-mask: var($svg);
+//     // mask: var($svg);
+//     background-color: pink;
+//     background-repeat: no-repeat;
+//     background-position: center;
+//     height: 26px;
+//     width: 26px;
+//     top: 4.5px;
+//     left: 4px;
+//     border-radius: 100%;
+//     transition: 0.4s;
+//   }
+
+//   input[type="checkbox"] {
+//     display: none;
+//   }
+
+//   input[type="checkbox"]:checked + .slider {
+//     background-color: #2196f3;
+//   }
+
+//   input[type="checkbox"]:checked + .slider:before {
+//     transform: translateX(36px);
+//     background-image: url(../../../icons/dark_mode.svg);
+//   }
+// }
+
+// // .teste {
+// //   width: 100%;
+// //   height: 100%;
+// //   padding: 5;
+// //   display: flex;
+// //   justify-content: center;
+// //   border-radius: 100%;
+// //   background-color: red;
+// //   background-image: url(../../../icons/dark_mode.svg);
+// // }

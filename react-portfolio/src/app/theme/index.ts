@@ -44,12 +44,33 @@ export const theme = (mode: PaletteMode) =>
         defaultProps: {
           disableRipple: true,
           disableElevation: true,
+          variant: "contained",
         },
       },
       MuiPaper: {
         defaultProps: {
           elevation: 0,
           square: true,
+        },
+      },
+      MuiSwitch: {
+        defaultProps: {
+          disableRipple: true,
+        },
+      },
+      // TODO Ver se não fica melhor deixar essa customização no componente
+      MuiToggleButton: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            color: theme.palette.primary.contrastText,
+            backgroundColor: theme.palette.primary.main,
+            border: "none",
+            borderRadius: 0,
+            "&.Mui-selected, &.Mui-selected:hover ": {
+              color: theme.palette.primary.contrastText,
+              backgroundColor: theme.palette.primary.dark,
+            },
+          }),
         },
       },
     },
