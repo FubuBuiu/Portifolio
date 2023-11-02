@@ -1,0 +1,120 @@
+@use "src/app/theme/theme.module" as theme;
+
+@mixin reflections-default-properties {
+  height: 140%;
+  background-color: white;
+  opacity: 0.9;
+  rotate: 35deg;
+}
+
+.htmlColor {
+  color: #e44d26;
+}
+.javascriptColor {
+  color: #f7df1e;
+}
+.vueColor {
+  color: #00bb82;
+}
+.typescriptColor,
+.cssColor {
+  color: #046fe5;
+}
+.styledComponentColor,
+.sassColor {
+  color: #cf649a;
+}
+
+.card {
+  width: 900px;
+  height: auto;
+  margin-top: 50px;
+  z-index: 0;
+  background-color: map-get(
+    $map: theme.$theme-settings,
+    $key: "primary-main-color"
+  );
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  .cardContent {
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+  }
+  .reflectionEffect {
+    z-index: -1;
+    width: 180%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    opacity: 0.6;
+    animation: moveRightLeft 10s ease-in-out infinite;
+    .reflection1 {
+      width: 15px;
+      @include reflections-default-properties();
+    }
+    .reflection2 {
+      width: 10px;
+      @include reflections-default-properties();
+    }
+    .reflection3 {
+      width: 10px;
+      @include reflections-default-properties();
+    }
+    .reflection4 {
+      width: 5px;
+      @include reflections-default-properties();
+    }
+  }
+}
+
+@keyframes moveRightLeft {
+  0%,
+  100% {
+    left: -90%;
+  }
+  20% {
+    left: -90%; /* Atraso por 2 segundos */
+  }
+  50% {
+    left: 20%; /* Vá para a direita */
+  }
+  70% {
+    left: 20%; /* Vá para a direita */
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .card {
+    width: 400px;
+    margin-top: 30px;
+    .cardContent {
+      padding: 20px;
+    }
+    .reflectionEffect {
+      animation: moveRightLeft2 10s ease-in-out infinite;
+    }
+  }
+  @keyframes moveRightLeft2 {
+    0%,
+    100% {
+      left: -330%;
+    }
+    20% {
+      left: -330%; /* Atraso por 2 segundos */
+    }
+    50% {
+      left: 20%; /* Vá para a direita */
+    }
+    70% {
+      left: 20%; /* Vá para a direita */
+    }
+  }
+  @media screen and (max-device-width: 399px) {
+    .card {
+      width: 100%;
+    }
+  }
+}
