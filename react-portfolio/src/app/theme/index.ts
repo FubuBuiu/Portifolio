@@ -73,6 +73,13 @@ export const theme = (mode: PaletteMode) =>
           }),
         },
       },
+      MuiDrawer: {
+        styleOverrides: {
+          paper: {
+            border: "none",
+          },
+        },
+      },
     },
     typography: {
       fontFamily: themeSettings["font-family"],
