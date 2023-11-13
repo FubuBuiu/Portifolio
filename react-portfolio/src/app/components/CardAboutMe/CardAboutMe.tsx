@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 import Image from "next/image";
 import {
   Box,
@@ -9,7 +9,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import styles from "./styles.module.scss";
-import meBlue from "../../images/me_blue.png";
+import meBlue from "@/images/me_blue.png";
 
 const CARD_FIELD_INFORMATIONS = [
   { title: "Nome", text: "Brendon Angelo" },

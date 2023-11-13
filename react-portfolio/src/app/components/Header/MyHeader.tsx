@@ -16,7 +16,6 @@ import {
 import { CustomSwitch } from "../CustomSwitch";
 import React, {
   ChangeEvent,
-  MouseEvent,
   MutableRefObject,
   useEffect,
   useState,
@@ -115,7 +114,7 @@ export function MyHeader({
       setNavigationSelected(oldNavigationValue);
     }
   }
-  //TODO Adicionar a função de quando clicar em algum botão de navegação do Drawer, fechar o Drawer.
+
   // TODO Passar para o SASS a função de esconder os botões do ToggleButtonGroup quando o tamanho da tela alterar.
   return (
     <>
