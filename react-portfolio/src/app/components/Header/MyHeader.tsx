@@ -14,7 +14,14 @@ import {
   useTheme,
 } from "@mui/material";
 import { CustomSwitch } from "../CustomSwitch";
-import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  MouseEvent,
+  MutableRefObject,
+  useEffect,
+  useState,
+} from "react";
+import { refType } from "@/app/page";
 import { MenuIcon } from "@/icons/MenuIcon";
 import { CloseIcon } from "@/icons/CloseIcon";
 
@@ -32,18 +39,21 @@ enum NavigationValues {
   PROJECTS = "projects",
   CONTACTS = "contacts",
 }
-const buttonsOptions = [
-  { value: NavigationValues.START, text: "Início" },
-  { value: NavigationValues.ABOUT_ME, text: "Sobre mim" },
-  { value: NavigationValues.SKILLS, text: "Habilidades" },
-  { value: NavigationValues.PROJECTS, text: "Projetos" },
-  { value: NavigationValues.CONTACTS, text: "Contatos" },
-];
+
+export interface SectionRefType {
+  startRef: MutableRefObject<refType>;
+  aboutMeRef: MutableRefObject<refType>;
+  skillsRef: MutableRefObject<refType>;
+  projectRef: MutableRefObject<refType>;
+  contactsRef: MutableRefObject<refType>;
+}
 
 export function MyHeader({
   toggleTheme,
+  sectionRefs,
 }: {
   toggleTheme: (event: ChangeEvent<HTMLInputElement>) => void;
+  sectionRefs: SectionRefType;
 }) {
   const [navigationSelected, setNavigationSelected] =
     useState<NavigationValueType>("start");
@@ -59,7 +69,45 @@ export function MyHeader({
     }
   }, [matches]);
 
-  function toggleValueNavigation(event: MouseEvent<HTMLElement>, value: any) {
+  const buttonsOptions = [
+    {
+      value: NavigationValues.START,
+      text: "Início",
+      handleClick: () => {
+        sectionRefs.startRef.current?.scrollIntoView({ behavior: "smooth" });
+      },
+    },
+    {
+      value: NavigationValues.ABOUT_ME,
+      text: "Sobre mim",
+      handleClick: () => {
+        sectionRefs.aboutMeRef.current?.scrollIntoView({ behavior: "smooth" });
+      },
+    },
+    {
+      value: NavigationValues.SKILLS,
+      text: "Habilidades",
+      handleClick: () => {
+        sectionRefs.skillsRef.current?.scrollIntoView({ behavior: "smooth" });
+      },
+    },
+    {
+      value: NavigationValues.PROJECTS,
+      text: "Projetos",
+      handleClick: () => {
+        sectionRefs.projectRef.current?.scrollIntoView({ behavior: "smooth" });
+      },
+    },
+    {
+      value: NavigationValues.CONTACTS,
+      text: "Contatos",
+      handleClick: () => {
+        sectionRefs.contactsRef.current!.scrollIntoView({ behavior: "smooth" });
+      },
+    },
+  ];
+
+  function toggleValueNavigation(value: any) {
     if (value) {
       setNavigationSelected(value);
       setOldNavigationValue(value);
@@ -67,58 +115,35 @@ export function MyHeader({
       setNavigationSelected(oldNavigationValue);
     }
   }
-
+  //TODO Adicionar a função de quando clicar em algum botão de navegação do Drawer, fechar o Drawer.
+  // TODO Passar para o SASS a função de esconder os botões do ToggleButtonGroup quando o tamanho da tela alterar.
   return (
     <>
       <Drawer
         anchor="top"
         open={openDrawer}
-        onClose={() => setOpenDrawer(false)}
-        variant="persistent"
+        onClose={() => setOpenDrawer(!openDrawer)}
         sx={{ zIndex: "1100", display: matches ? "inherit" : "none" }}
       >
         <Box pt={"66px"} bgcolor={theme.palette.secondary.main}>
           <List dense disablePadding>
-            <ListItem sx={{ display: "flex", justifyContent: "center" }}>
-              <Button
-                variant="text"
-                sx={{ fontSize: 26, textTransform: "none" }}
+            {buttonsOptions.map((button) => (
+              <ListItem
+                key={button.value}
+                sx={{ display: "flex", justifyContent: "center" }}
               >
-                Início
-              </Button>
-            </ListItem>
-            <ListItem sx={{ display: "flex", justifyContent: "center" }}>
-              <Button
-                variant="text"
-                sx={{ fontSize: 26, textTransform: "none" }}
-              >
-                Sobre mim
-              </Button>
-            </ListItem>
-            <ListItem sx={{ display: "flex", justifyContent: "center" }}>
-              <Button
-                variant="text"
-                sx={{ fontSize: 26, textTransform: "none" }}
-              >
-                Habilidades
-              </Button>
-            </ListItem>
-            <ListItem sx={{ display: "flex", justifyContent: "center" }}>
-              <Button
-                variant="text"
-                sx={{ fontSize: 26, textTransform: "none" }}
-              >
-                Projetos
-              </Button>
-            </ListItem>
-            <ListItem sx={{ display: "flex", justifyContent: "center" }}>
-              <Button
-                variant="text"
-                sx={{ fontSize: 26, textTransform: "none" }}
-              >
-                Contatos
-              </Button>
-            </ListItem>
+                <Button
+                  variant="text"
+                  onClick={() => {
+                    button.handleClick();
+                    setOpenDrawer(!openDrawer);
+                  }}
+                  sx={{ fontSize: 26, textTransform: "none" }}
+                >
+                  {button.text}
+                </Button>
+              </ListItem>
+            ))}
           </List>
         </Box>
       </Drawer>
@@ -141,12 +166,12 @@ export function MyHeader({
           <ToggleButtonGroup
             exclusive
             sx={{ height: "100%", display: matches ? "none" : "inherit" }}
-            value={navigationSelected}
             onChange={toggleValueNavigation}
           >
             {buttonsOptions.map((button) => (
               <ToggleButton
                 key={button.value}
+                onClick={button.handleClick}
                 sx={{ textTransform: "none", fontSize: 27 }}
                 value={button.value}
               >
