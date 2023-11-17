@@ -1,0 +1,45 @@
+.animationContainer {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 90px;
+  transition-property: width, height;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  cursor: pointer;
+  .insta,
+  .linkedin,
+  .gitHub,
+  .email,
+  .whatsapp {
+    transition: transform 0.2s linear;
+  }
+  .insta {
+    width: 100px;
+  }
+  .linkedin {
+    width: 75px;
+  }
+  .gitHub {
+    width: 78px;
+  }
+  .email {
+    width: 120px;
+  }
+  .whatsapp {
+    width: 75px;
+  }
+  &:hover {
+    width: 140px;
+    height: 140px;
+    .insta,
+    .linkedin,
+    .gitHub,
+    .email,
+    .whatsapp {
+      transform: scale(1.5);
+    }
+  }
+}
