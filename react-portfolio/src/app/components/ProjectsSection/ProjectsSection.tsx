@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { ProjectCard } from "./ProjectCard";
-import { Project, getProjects } from "@/app/services/firebase";
+import { Project, getProjects } from "@/app/server/firebase";
 import { LoadingComponent } from "../LoadingComponent";
 
 export function ProjectsSection({ deviceMatches }: { deviceMatches: boolean }) {

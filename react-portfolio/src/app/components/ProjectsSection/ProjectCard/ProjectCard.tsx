@@ -12,7 +12,7 @@ import {
   useTheme,
 } from "@mui/material";
 import styles from "./styles.module.scss";
-import { Project } from "@/app/services/firebase";
+import { Project } from "@/app/server/firebase";
 import React, { useState } from "react";
 import Image from "next/image";
 import { CloseIcon } from "@/icons/CloseIcon";
