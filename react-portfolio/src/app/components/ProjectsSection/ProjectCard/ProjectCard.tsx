@@ -7,15 +7,13 @@ import {
   DialogContentText,
   DialogTitle,
   IconButton,
-  Paper,
   Stack,
   Typography,
-  useMediaQuery,
   useTheme,
 } from "@mui/material";
 import styles from "./styles.module.scss";
 import { Project } from "@/app/services/firebase";
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { CloseIcon } from "@/icons/CloseIcon";
 import { LottieFilesIcon } from "@/icons/LottieFilesIcon";
@@ -29,6 +27,8 @@ import { JavascriptIcon } from "@/icons/JavascriptIcon";
 import { NuxtIcon } from "@/icons/NuxtIcon";
 import { HtmlIcon } from "@/icons/HtmlIcon";
 import { CssIcon } from "@/icons/CssIcon";
+import { ReactIcon } from "@/icons/ReactIcon";
+import { VueIcon } from "@/icons/VueIcon";
 
 enum ToolsEnum {
   VUETIFY = "VUETIFY",
@@ -50,23 +50,25 @@ enum ToolsEnum {
 }
 
 export function ProjectCard({
-  title,
-  image,
-  description,
-  gitHubLink,
-  link,
-  toolsUsed,
-}: Omit<Project, "id">) {
+  project,
+  deviceMatches,
+}: {
+  project: Omit<Project, "id">;
+  deviceMatches: boolean;
+}) {
   const [showDialog, setShowDialog] = useState(false);
+  const [isHover, setIsHover] = useState(false);
   const theme = useTheme();
-  const matches = useMediaQuery("(max-width: 600px)");
 
-  const handleShowDialog = () => setShowDialog(!showDialog);
+  const handleShowDialog = () => {
+    setIsHover(false);
+    setShowDialog(!showDialog);
+  };
 
   const handleToolsUsed = () => {
     let toolsList = [];
-    const iconHeight = 40;
-    for (const tool of toolsUsed) {
+    const iconHeight = deviceMatches ? 30 : 40;
+    for (const tool of project.toolsUsed) {
       switch (tool) {
         case ToolsEnum.HTML:
           toolsList.push(<HtmlIcon key={ToolsEnum.HTML} height={iconHeight} />);
@@ -113,23 +115,44 @@ export function ProjectCard({
         case ToolsEnum.JEST:
           toolsList.push(<JestIcon key={ToolsEnum.JEST} height={iconHeight} />);
           break;
+        case ToolsEnum.VUE:
+          toolsList.push(<VueIcon key={ToolsEnum.VUE} height={iconHeight} />);
+          break;
+        case ToolsEnum.REACT:
+          toolsList.push(
+            <ReactIcon key={ToolsEnum.REACT} height={iconHeight} />
+          );
+          break;
         default:
           break;
       }
     }
     return toolsList;
   };
+
   return (
     <>
+      <Typography
+        className={styles.titleOffCard}
+        textAlign={"center"}
+        mb={1}
+        variant="h6"
+      >
+        {project.title}
+      </Typography>
       <div className={styles.cardArea}>
         <div className={styles.card} onClick={() => handleShowDialog()}>
-          <Typography className={styles.title} fontSize={28} lineHeight={1}>
-            {title}
+          <Typography
+            className={styles.titleInsideCard}
+            fontSize={28}
+            lineHeight={1}
+          >
+            {project.title}
           </Typography>
           <div
             className={styles.backgroundImage}
             style={{
-              backgroundImage: `url(${image})`,
+              backgroundImage: `url(${project.image})`,
             }}
           ></div>
         </div>
@@ -138,25 +161,33 @@ export function ProjectCard({
       <Dialog
         open={showDialog}
         onClose={handleShowDialog}
-        // fullWidth
-        // maxWidth={false}
+        fullScreen={deviceMatches}
         PaperProps={{ sx: { borderRadius: 2 } }}
       >
-        <DialogTitle textAlign={"center"} position={"relative"}>
-          <span>{title}</span>
-          {/* TODO Tentar trocar a cor do icone do botão para azul quando mouse estiver por cima do botão */}
+        <DialogTitle
+          textAlign={"center"}
+          variant={"h4"}
+          fontSize={deviceMatches ? 30 : undefined}
+          position={"relative"}
+        >
+          {project.title}
           <IconButton
             disableRipple
             onClick={handleShowDialog}
+            onMouseOver={() => setIsHover(true)}
+            onMouseLeave={() => setIsHover(false)}
             sx={{ position: "absolute", right: 0, top: 0 }}
           >
-            <CloseIcon width={25} color={"#6B6B6B"} />
+            <CloseIcon
+              width={deviceMatches ? 35 : 30}
+              color={isHover ? theme.palette.primary.main : "#6B6B6B"}
+            />
           </IconButton>
         </DialogTitle>
         <DialogContent>
-          <Stack mb={3} direction={"row"} justifyContent={"center"}>
+          <Stack mb={1} direction={"row"} justifyContent={"center"}>
             <Image
-              src={image}
+              src={project.image}
               sizes="100vw"
               width={0}
               height={0}
@@ -169,9 +200,9 @@ export function ProjectCard({
             sx={{ wordBreak: "break-word" }}
             color={"primary.main"}
           >
-            {description}
+            {project.description}
           </DialogContentText>
-          <Box my={3}>
+          <Box mt={2}>
             <Typography>Desenvolvido com:</Typography>
             <Stack direction={"row"} columnGap={1}>
               <>{handleToolsUsed()}</>
@@ -180,14 +211,20 @@ export function ProjectCard({
         </DialogContent>
         <DialogActions sx={{ justifyContent: "center" }}>
           <Button
+            size="large"
             sx={{ textTransform: "none" }}
             target="_blank"
-            href={gitHubLink}
+            href={project.gitHubLink}
           >
             Repositório
           </Button>
-          {link && (
-            <Button sx={{ textTransform: "none" }} target="_blank" href={link}>
+          {project.link && (
+            <Button
+              size="large"
+              sx={{ textTransform: "none" }}
+              target="_blank"
+              href={project.link}
+            >
               Testar projeto
             </Button>
           )}

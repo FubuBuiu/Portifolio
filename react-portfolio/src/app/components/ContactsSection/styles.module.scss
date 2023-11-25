@@ -26,20 +26,39 @@
     width: 78px;
   }
   .email {
-    width: 120px;
+    width: 125px;
   }
   .whatsapp {
     width: 75px;
   }
-  &:hover {
-    width: 140px;
-    height: 140px;
-    .insta,
-    .linkedin,
-    .gitHub,
-    .email,
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      width: 140px;
+      height: 140px;
+      .insta,
+      .linkedin,
+      .gitHub,
+      .email,
+      .whatsapp {
+        transform: scale(1.5);
+      }
+    }
+  }
+  @media screen and (max-device-width: 600px) {
+    .insta {
+      width: 90px;
+    }
+    .linkedin {
+      width: 65px;
+    }
+    .gitHub {
+      width: 68px;
+    }
+    .email {
+      width: 110px;
+    }
     .whatsapp {
-      transform: scale(1.5);
+      width: 65px;
     }
   }
 }

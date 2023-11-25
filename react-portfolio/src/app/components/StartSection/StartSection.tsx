@@ -7,8 +7,8 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
 import reactLogoAnimation from "@/lottie-animations/react-logo.json";
 
-export function StartSection() {
-  const matches = useMediaQuery("(max-device-width: 400px)");
+export function StartSection({ deviceMatches }: { deviceMatches: boolean }) {
+  const matches400 = useMediaQuery("(max-device-width: 400px)");
   return (
     <Box
       minHeight={"calc(100vh - 66px)"}
@@ -19,14 +19,18 @@ export function StartSection() {
       alignItems={"center"}
       padding={3}
     >
-      <Typography variant="h4" marginTop={5}>
+      <Typography
+        variant="h4"
+        marginTop={deviceMatches ? 0 : 5}
+        fontSize={matches400 ? 30 : undefined}
+      >
         Este portfólio foi feito em React
       </Typography>
       <Player
         src={reactLogoAnimation}
         autoplay
         keepLastFrame
-        style={{ height: matches ? 130 : 300 }}
+        style={{ height: matches400 ? 250 : 300 }}
       />
       <Typography variant="h3">+</Typography>
       <Stack
@@ -38,11 +42,11 @@ export function StartSection() {
         useFlexGap
         flexWrap={"wrap"}
       >
-        <NextIcon height={matches ? 65 : 80} />
-        <MuiIcon height={matches ? 65 : 80} />
-        <TypescriptIcon height={matches ? 65 : 80} />
-        <SassIcon height={matches ? 65 : 80} />
-        <LottieFilesIcon height={matches ? 65 : 80} />
+        <NextIcon height={deviceMatches ? 65 : 80} />
+        <MuiIcon height={deviceMatches ? 65 : 80} />
+        <TypescriptIcon height={deviceMatches ? 65 : 80} />
+        <SassIcon height={deviceMatches ? 65 : 80} />
+        <LottieFilesIcon height={deviceMatches ? 65 : 80} />
       </Stack>
     </Box>
   );

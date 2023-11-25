@@ -115,7 +115,6 @@ export function MyHeader({
     }
   }
 
-  // TODO Passar para o SASS a função de esconder os botões do ToggleButtonGroup quando o tamanho da tela alterar.
   return (
     <>
       <Drawer
@@ -178,9 +177,12 @@ export function MyHeader({
               </ToggleButton>
             ))}
           </ToggleButtonGroup>
-          <Box position={"absolute"} right={0} mr={5}>
+          <Box position={"absolute"} right={0} mr={2}>
             <Stack direction={"row"} spacing={3} alignItems={"center"}>
-              <CustomSwitch onChange={toggleTheme} />
+              <CustomSwitch
+                onChange={toggleTheme}
+                checked={theme.palette.mode === "dark" ? true : false}
+              />
               {matches ? (
                 openDrawer ? (
                   <IconButton

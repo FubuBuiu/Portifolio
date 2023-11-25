@@ -76,13 +76,13 @@
     left: -90%;
   }
   20% {
-    left: -90%; /* Atraso por 2 segundos */
+    left: -90%;
   }
   50% {
-    left: 20%; /* Vá para a direita */
+    left: 20%;
   }
   70% {
-    left: 20%; /* Vá para a direita */
+    left: 20%;
   }
 }
 
@@ -103,13 +103,13 @@
       left: -330%;
     }
     20% {
-      left: -330%; /* Atraso por 2 segundos */
+      left: -330%;
     }
     50% {
-      left: 20%; /* Vá para a direita */
+      left: 20%;
     }
     70% {
-      left: 20%; /* Vá para a direita */
+      left: 20%;
     }
   }
   @media screen and (max-device-width: 399px) {

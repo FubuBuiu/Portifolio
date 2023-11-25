@@ -58,7 +58,6 @@ export const theme = (mode: PaletteMode) =>
           disableRipple: true,
         },
       },
-      // TODO Ver se não fica melhor deixar essa customização no componente
       MuiToggleButton: {
         styleOverrides: {
           root: ({ theme }) => ({
@@ -84,7 +83,6 @@ export const theme = (mode: PaletteMode) =>
         styleOverrides: {
           tooltip: ({ theme }) => ({
             backgroundColor: theme.palette.primary.main,
-            fontSize: 20,
           }),
           arrow: ({ theme }) => ({
             color: theme.palette.primary.main,

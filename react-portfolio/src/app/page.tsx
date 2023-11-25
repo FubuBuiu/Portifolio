@@ -1,33 +1,11 @@
 "use client";
-import {
-  Box,
-  Fade,
-  Grid,
-  PaletteMode,
-  Paper,
-  Popper,
-  Stack,
-  Tooltip,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
-import styles from "./page.module.scss";
+import { PaletteMode, Paper, useMediaQuery } from "@mui/material";
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { theme } from "./theme";
 import { ThemeProvider } from "@mui/material/styles";
 import { MyHeader } from "./components/Header";
-import { NextIcon } from "@/icons/NextIcon";
-import { TypescriptIcon } from "@/icons/TypescriptIcon";
-import { SassIcon } from "@/icons/SassIcon";
-import { LottieFilesIcon } from "@/icons/LottieFilesIcon";
-import { MuiIcon } from "@/icons/MuiIcon";
 import { CustomScrollbar } from "./components/CustomScrollbar";
-import { CardAboutMe } from "./components/AboutMeSection/CardAboutMe";
-import { Player } from "@lottiefiles/react-lottie-player";
-
-import { ProjectCard } from "./components/ProjectsSection/ProjectCard";
 import { SectionRefType } from "./components/Header/MyHeader";
-import { Project, getProjects } from "./services/firebase";
 import { StartSection } from "./components/StartSection";
 import { AboutMeSection } from "./components/AboutMeSection";
 import { SkillsSection } from "./components/SkillsSection";
@@ -37,10 +15,8 @@ import { ContactsSection } from "./components/ContactsSection";
 export type refType = null | HTMLElement;
 
 export default function Home() {
-  const [mode, setMode] = useState<PaletteMode>("light");
-  const matches = useMediaQuery("(max-device-width: 400px)");
-  const [isTooltipOpen, setIsTooltipOpen] = useState(false);
-
+  const [themeMode, setThemeMode] = useState<PaletteMode>("light");
+  const deviceMatches = useMediaQuery("(max-device-width: 600px)");
   const startSectionRef = useRef<refType>(null);
   const aboutMeSectionRef = useRef<refType>(null);
   const skillsSectionRef = useRef<refType>(null);
@@ -57,29 +33,44 @@ export default function Home() {
 
   function toggleTheme(event: ChangeEvent<HTMLInputElement>) {
     const isActive = event.target.checked;
-    setMode(isActive ? "dark" : "light");
+    var mode: PaletteMode;
+    if (isActive) {
+      mode = "dark";
+    } else {
+      mode = "light";
+    }
+    setThemeMode(mode);
+    localStorage.setItem("themeMode", mode);
   }
+
+  useEffect(() => {
+    if (!localStorage.getItem("themeMode")) {
+      localStorage.setItem("themeMode", "light");
+    }
+    const themeLocalStorage = localStorage.getItem("themeMode");
+    setThemeMode(themeLocalStorage as PaletteMode);
+  }, []);
 
   //TODO Rever a responsividade do site todo para mobile
   return (
-    <ThemeProvider theme={theme(mode)}>
+    <ThemeProvider theme={theme(themeMode!)}>
       <MyHeader toggleTheme={toggleTheme} sectionRefs={sectionRefs} />
       <CustomScrollbar>
         <Paper>
           <section ref={startSectionRef}>
-            <StartSection />
+            <StartSection deviceMatches={deviceMatches} />
           </section>
           <section ref={aboutMeSectionRef}>
-            <AboutMeSection />
+            <AboutMeSection deviceMatches={deviceMatches} />
           </section>
           <section ref={skillsSectionRef}>
-            <SkillsSection />
+            <SkillsSection deviceMatches={deviceMatches} />
           </section>
           <section ref={projectsSectionRef}>
-            <ProjectsSection />
+            <ProjectsSection deviceMatches={deviceMatches} />
           </section>
           <section ref={contactsSectionRef}>
-            <ContactsSection />
+            <ContactsSection deviceMatches={deviceMatches} />
           </section>
         </Paper>
       </CustomScrollbar>

@@ -4,7 +4,7 @@ import airplaneAnimationOne from "@/lottie-animations/airplane1.json";
 import airplaneAnimationTwo from "@/lottie-animations/airplane2.json";
 import styles from "./styles.module.scss";
 
-export function SkillsSection() {
+export function SkillsSection({ deviceMatches }: { deviceMatches: boolean }) {
   return (
     <Box
       height={"700px"}
@@ -13,7 +13,12 @@ export function SkillsSection() {
       position={"relative"}
       overflow={"hidden"}
     >
-      <Typography textAlign={"center"} lineHeight={1} variant="h3">
+      <Typography
+        textAlign={"center"}
+        lineHeight={1}
+        variant="h3"
+        fontSize={deviceMatches ? 40 : undefined}
+      >
         Habilidades
       </Typography>
       <div className={styles.airplaneOneContainer}>

@@ -1,4 +1,8 @@
 @use "src/app/theme/theme.module" as theme;
+
+.titleOffCard {
+  display: none;
+}
 .cardArea {
   width: 460px;
   height: 290px;
@@ -29,7 +33,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    .title {
+    .titleInsideCard {
       opacity: 0;
       color: white;
       transition: opacity 0.2s linear;
@@ -46,15 +50,46 @@
       transition-duration: 0.2s;
       transition-timing-function: linear;
     }
-    &:hover + .backlight {
-      opacity: 1;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover + .backlight {
+        opacity: 1;
+      }
+      &:hover .backgroundImage {
+        transform: scale(1.1);
+        filter: brightness(50%);
+      }
+      &:hover .titleInsideCard {
+        opacity: 1;
+      }
     }
-    &:hover .backgroundImage {
-      transform: scale(1.1);
-      filter: brightness(50%);
+  }
+}
+@media screen and (max-device-width: 600px) {
+  .titleOffCard {
+    display: block;
+  }
+  .cardArea {
+    width: 340px;
+    height: 210px;
+    .backlight {
+      animation: lightsPulsing 5s linear infinite;
     }
-    &:hover .title {
-      opacity: 1;
+    .titleInsideCard {
+      display: none;
+    }
+    @keyframes lightsPulsing {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      70% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
     }
   }
 }

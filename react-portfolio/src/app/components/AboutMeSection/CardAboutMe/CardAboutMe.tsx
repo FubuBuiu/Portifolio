@@ -19,7 +19,33 @@ const CARD_FIELD_INFORMATIONS = [
 ];
 
 export function CardAboutMe() {
-  const matches = useMediaQuery("(max-width: 900px)");
+  const matches900 = useMediaQuery("(max-width: 900px)");
+  const matchesDevice400 = useMediaQuery("(max-device-width: 400px)");
+
+  const descriptionBox = (
+    <Box bgcolor={"secondary.main"} padding={1} borderRadius={2}>
+      <Stack textAlign={"start"}>
+        <Typography lineHeight={1} marginBottom={"5px"} variant="subtitle1">
+          Descrição
+        </Typography>
+        <Typography lineHeight={"25px"} variant="h6">
+          Desde a infância, minha paixão por ilustrações e cores me conduziu à
+          criação digital. Hoje, como desenvolvedor front-end, combino design
+          com habilidades em{" "}
+          <span className={styles.javascriptColor}>JavaScript</span>,{" "}
+          <span className={styles.typescriptColor}>TypeScript</span>,
+          <span className={styles.htmlColor}> HTML</span>,
+          <span className={styles.cssColor}> CSS</span>,{" "}
+          <span className={styles.sassColor}>SASS</span>,{" "}
+          <span className={styles.styledComponentColor}>Styled Components</span>
+          , <span className={styles.vueColor}>Vue.js</span> e React para criar
+          experiências web envolventes. Acredito na colaboração entre design e
+          código para cativar os usuários, e estou em constante busca de
+          aprimoramento.
+        </Typography>
+      </Stack>
+    </Box>
+  );
 
   return (
     <div className={styles.card}>
@@ -80,8 +106,13 @@ export function CardAboutMe() {
         })}
       </div>
       <div className={styles.cardContent}>
-        <Grid container columnSpacing={{ xs: matches ? 2 : 5 }}>
-          <Grid item xs={matches ? 6 : 3.5}>
+        <Grid
+          container
+          columnSpacing={{ xs: matches900 ? 2 : 5 }}
+          rowSpacing={1}
+          justifyContent={matchesDevice400 ? "center" : undefined}
+        >
+          <Grid item xs={matchesDevice400 ? 8 : matches900 ? 6 : 3.5}>
             <Card
               elevation={0}
               sx={{
@@ -102,103 +133,45 @@ export function CardAboutMe() {
               />
             </Card>
           </Grid>
-          <Grid item xs={matches ? 6 : 8.5}>
-            <Grid container spacing={1}>
-              {CARD_FIELD_INFORMATIONS.map((value, index) => {
-                return (
-                  <Grid key={index} item xs={matches ? 12 : 6}>
-                    <Box
-                      bgcolor={"secondary.main"}
-                      padding={"8px 0 8px 8px"}
-                      borderRadius={2}
-                    >
-                      <Stack textAlign={"start"}>
-                        <Typography
-                          lineHeight={1}
-                          marginBottom={"5px"}
-                          variant={matches ? "subtitle1" : "subtitle1"}
-                        >
-                          {value.title}
-                        </Typography>
-                        <Typography
-                          lineHeight={1}
-                          variant={matches ? "h6" : "h6"}
-                        >
-                          {value.text}
-                        </Typography>
-                      </Stack>
-                    </Box>
-                  </Grid>
-                );
-              })}
-              <Grid item display={matches ? "none" : "block"}>
-                {/* TODO COMPONENTIZAR A SESSÃO DE Descrição DO CARD */}
-                <Box bgcolor={"secondary.main"} padding={1} borderRadius={2}>
-                  <Stack textAlign={"start"}>
-                    <Typography
-                      lineHeight={1}
-                      marginBottom={"5px"}
-                      variant="subtitle1"
-                    >
-                      Descrição
-                    </Typography>
-                    <Typography lineHeight={"25px"} variant="h6">
-                      Desde a infância, minha paixão por ilustrações e cores me
-                      conduziu à criação digital. Hoje, como desenvolvedor
-                      front-end, combino design com habilidades em{" "}
-                      <span className={styles.javascriptColor}>JavaScript</span>
-                      ,{" "}
-                      <span className={styles.typescriptColor}>TypeScript</span>
-                      ,<span className={styles.htmlColor}> HTML</span>,
-                      <span className={styles.cssColor}> CSS</span>,{" "}
-                      <span className={styles.sassColor}>SASS</span>,{" "}
-                      <span className={styles.styledComponentColor}>
-                        Styled Components
-                      </span>
-                      , <span className={styles.vueColor}>Vue.js</span> e React
-                      para criar experiências web envolventes. Acredito na
-                      colaboração entre design e código para cativar os
-                      usuários, e estou em constante busca de aprimoramento.
-                    </Typography>
-                  </Stack>
-                </Box>
-              </Grid>
+          <Grid
+            item
+            xs={matchesDevice400 ? 12 : matches900 ? 6 : 8.5}
+            container
+            spacing={1}
+          >
+            {CARD_FIELD_INFORMATIONS.map((value, index) => {
+              return (
+                <Grid key={index} item xs={matches900 ? 12 : 6}>
+                  <Box
+                    bgcolor={"secondary.main"}
+                    padding={"8px 0 8px 8px"}
+                    borderRadius={2}
+                  >
+                    <Stack textAlign={"start"}>
+                      <Typography
+                        lineHeight={1}
+                        marginBottom={"5px"}
+                        variant={matches900 ? "subtitle1" : "subtitle1"}
+                      >
+                        {value.title}
+                      </Typography>
+                      <Typography
+                        lineHeight={1}
+                        variant={matches900 ? "h6" : "h6"}
+                      >
+                        {value.text}
+                      </Typography>
+                    </Stack>
+                  </Box>
+                </Grid>
+              );
+            })}
+            <Grid item xs={12} display={matches900 ? "none" : "block"}>
+              {descriptionBox}
             </Grid>
           </Grid>
-        </Grid>
-        <Grid container marginTop={1} display={matches ? "block" : "none"}>
-          <Grid item xs={12}>
-            <Box
-              bgcolor={"secondary.main"}
-              height={"100%"}
-              paddingLeft={1}
-              borderRadius={2}
-            >
-              <Stack alignItems={"start"}>
-                <Typography variant="subtitle1">Descrição</Typography>
-                <Typography
-                  lineHeight={"25px"}
-                  variant="h6"
-                  textAlign={"initial"}
-                >
-                  Desde a infância, minha paixão por ilustrações e cores me
-                  conduziu à criação digital. Hoje, como desenvolvedor
-                  front-end, combino design com habilidades em{" "}
-                  <span className={styles.javascriptColor}>JavaScript</span>,{" "}
-                  <span className={styles.typescriptColor}>TypeScript</span>,
-                  <span className={styles.htmlColor}> HTML</span>,
-                  <span className={styles.cssColor}> CSS</span>,{" "}
-                  <span className={styles.sassColor}>SASS</span>,{" "}
-                  <span className={styles.styledComponentColor}>
-                    Styled Components
-                  </span>
-                  , <span className={styles.vueColor}>Vue.js</span> e React para
-                  criar experiências web envolventes. Acredito na colaboração
-                  entre design e código para cativar os usuários, e estou em
-                  constante busca de aprimoramento.
-                </Typography>
-              </Stack>
-            </Box>
+          <Grid item xs={12} display={matches900 ? "block" : "none"}>
+            {descriptionBox}
           </Grid>
         </Grid>
       </div>
