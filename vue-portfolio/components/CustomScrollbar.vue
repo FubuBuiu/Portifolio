@@ -150,7 +150,7 @@ export default Vue.extend({
 /* @use "src/app/theme/theme.module" as theme; */
 .content {
   position: relative;
-  height: 100%;
+  height: calc(100vh - 66px);
   overflow: auto;
   &::-webkit-scrollbar {
     display: none;
@@ -162,7 +162,6 @@ export default Vue.extend({
     width: 15px;
     height: 100%;
     margin-top: 66px;
-    /* padding: 10px 0 10px 0; */
     &:hover {
       .scrollTrack {
         .scrollThumb {
@@ -178,7 +177,6 @@ export default Vue.extend({
         margin-right: 5px;
         right: 0;
         width: 5px;
-        /* height: 100px; */
         border-radius: 100px;
         transition: width 0.3s;
       }
