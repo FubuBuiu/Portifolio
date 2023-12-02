@@ -11,7 +11,6 @@ module.exports = {
   // **optional** default: `[{ root: './' }]`
   // support monorepos
   projects: [
-    "./teste",
     "./vue-portfolio", // Shorthand for specifying only the project root location
     {
       // **required**
