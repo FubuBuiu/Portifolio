@@ -1,15 +1,22 @@
 <template>
   <span class="toggle-wrapper" @click="toggle">
     <span class="toggle-background" :style="backgroundStyles" />
-    <span class="toggle-thumb" :style="thumbStyles" />
+    <span class="toggle-thumb" :style="thumbStyles">
+      <DarkModeSvg v-if="value" :color="scrollBackgroundColor" :width="'22'" />
+      <LightModeSvg v-else :color="scrollBackgroundColor" :width="'22'" />
+    </span>
   </span>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import lightModeSvg from "@/svg/LightMode.svg";
-import darkModeSvg from "@/svg/DarkMode.svg";
+import LightModeSvg from "@/svg/LightMode.vue";
+import DarkModeSvg from "@/svg/DarkMode.vue";
 export default Vue.extend({
+  components: {
+    LightModeSvg,
+    DarkModeSvg,
+  },
   props: {
     value: {
       type: Boolean,
@@ -27,7 +34,6 @@ export default Vue.extend({
     thumbStyles() {
       return {
         backgroundColor: this.scrollThumbColor,
-        backgroundImage: `url(${this.value ? darkModeSvg : lightModeSvg})`,
         transform: this.value ? "translateX(30px)" : "translateX(0)",
       };
     },
@@ -65,14 +71,13 @@ export default Vue.extend({
     width: 32px;
     left: 4px;
     bottom: 2px;
-    /* background-image: url("../svg/LightMode.svg"); */
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #c2c2c2;
     border-radius: 9999px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition-property: transform, background-image;
+    transition-property: transform;
     transition-duration: 0.3s;
     transition-timing-function: ease;
   }
