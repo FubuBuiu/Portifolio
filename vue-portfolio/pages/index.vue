@@ -10,7 +10,7 @@
     <!-- ------------CONTENT------------ -->
     <CustomScrollbar :scroll-thumb-color="$vuetify.theme.themes[theme].primary">
       <section ref="startSection">
-        <div class="div1"></div>
+        <StartSection />
       </section>
       <section ref="aboutMeSection">
         <div class="div2"></div>
