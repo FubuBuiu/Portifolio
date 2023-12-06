@@ -13,7 +13,8 @@
         <StartSection />
       </section>
       <section ref="aboutMeSection">
-        <div class="div2"></div>
+        <AboutMeSection />
+        <!-- <div class="div2"></div> -->
       </section>
       <section ref="skillsSection">
         <div class="div3"></div>

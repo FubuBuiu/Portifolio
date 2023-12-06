@@ -1,4 +1,5 @@
 declare module "@lottiefiles/vue-lottie-player";
-declare module '*.svg' {
-  export default Vue;
+declare module "*.png" {
+  const value: string;
+  export default value;
 }
