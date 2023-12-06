@@ -14,10 +14,9 @@
       </section>
       <section ref="aboutMeSection">
         <AboutMeSection />
-        <!-- <div class="div2"></div> -->
       </section>
       <section ref="skillsSection">
-        <div class="div3"></div>
+        <SkillsSection />
       </section>
       <section ref="projectsSection">
         <div class="div4"></div>
@@ -78,22 +77,10 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss" scoped>
-.div1,
-.div2,
-.div3,
 .div4,
 .div5 {
   width: 100%;
   height: calc(100vh - 66px);
-}
-.div1 {
-  background-color: red;
-}
-.div2 {
-  background-color: blue;
-}
-.div3 {
-  background-color: green;
 }
 .div4 {
   background-color: yellow;
