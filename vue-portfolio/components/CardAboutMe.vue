@@ -31,8 +31,11 @@
         <v-col class="pa-0" cols="auto">
           <v-card
             flat
-            class="secondary pa-0 rounded-lg"
-            style="border: 9px solid"
+            class="pa-0 rounded-lg"
+            :style="{
+              border: `9px solid ${$vuetify.theme.themes[theme].secondary}`,
+              backgroundColor: $vuetify.theme.themes[theme].secondary,
+            }"
           >
             <v-img :src="image" :width="breakpoint900 ? '154' : '193'"></v-img>
           </v-card>
@@ -41,8 +44,11 @@
           <v-row class="pa-0 ma-0 mb-2">
             <v-col :class="`ma-0 pa-0 ${breakpoint900 ? 'mb-2' : 'mr-1'}`">
               <v-card
-                class="secondary pl-2 py-2 rounded-lg"
-                style="height: 100%"
+                class="pl-2 py-2 rounded-lg"
+                :style="{
+                  height: '100%',
+                  backgroundColor: $vuetify.theme.themes[theme].secondary,
+                }"
                 flat
               >
                 <v-card-subtitle
@@ -61,8 +67,11 @@
             </v-col>
             <v-col :class="`ma-0 pa-0 ${!breakpoint900 ?? 'ml-1'}`">
               <v-card
-                class="secondary pl-2 py-2 rounded-lg"
-                style="height: 100%"
+                class="pl-2 py-2 rounded-lg"
+                :style="{
+                  height: '100%',
+                  backgroundColor: $vuetify.theme.themes[theme].secondary,
+                }"
                 flat
               >
                 <v-card-subtitle
@@ -83,8 +92,11 @@
           <v-row class="pa-0 ma-0 mb-2">
             <v-col :class="`ma-0 pa-0 ${breakpoint900 ? 'mb-2' : 'mr-1'}`">
               <v-card
-                class="secondary pl-2 py-2 rounded-lg"
-                style="height: 100%"
+                class="pl-2 py-2 rounded-lg"
+                :style="{
+                  height: '100%',
+                  backgroundColor: $vuetify.theme.themes[theme].secondary,
+                }"
                 flat
               >
                 <v-card-subtitle
@@ -103,8 +115,11 @@
             </v-col>
             <v-col :class="`ma-0 pa-0 ${!breakpoint900 ?? 'ml-1'}`">
               <v-card
-                class="secondary pl-2 py-2 rounded-lg"
-                style="height: 100%"
+                class="pl-2 py-2 rounded-lg"
+                :style="{
+                  height: '100%',
+                  backgroundColor: $vuetify.theme.themes[theme].secondary,
+                }"
                 flat
               >
                 <v-card-subtitle
@@ -124,8 +139,11 @@
           </v-row>
           <v-row v-if="!breakpoint900" class="pa-0 ma-0">
             <v-card
-              class="secondary pl-2 py-2 rounded-lg"
-              style="height: 100%; width: 100%"
+              class="pl-2 py-2 rounded-lg"
+              :style="{
+                height: '100%',
+                backgroundColor: $vuetify.theme.themes[theme].secondary,
+              }"
               flat
             >
               <v-card-subtitle
@@ -158,8 +176,11 @@
       </v-row>
       <v-row v-if="breakpoint900" class="ma-0 pa-0">
         <v-card
-          class="secondary pl-2 py-2 rounded-lg"
-          style="height: 100%; width: 100%"
+          class="pl-2 py-2 rounded-lg"
+          :style="{
+            height: '100%',
+            backgroundColor: $vuetify.theme.themes[theme].secondary,
+          }"
           flat
         >
           <v-card-subtitle
@@ -204,6 +225,9 @@ export default Vue.extend({
   computed: {
     breakpoint900(): boolean {
       return this.$vuetify.breakpoint.width <= 900;
+    },
+    theme(): "light" | "dark" {
+      return this.$vuetify.theme.dark ? "dark" : "light";
     },
   },
 });

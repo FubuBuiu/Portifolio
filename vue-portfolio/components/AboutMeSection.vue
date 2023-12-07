@@ -1,5 +1,9 @@
 <template>
-  <v-container class="secondary pa-6" fluid>
+  <v-container
+    class="pa-6"
+    :style="{ backgroundColor: $vuetify.theme.themes[theme].secondary }"
+    fluid
+  >
     <v-row
       class="primary--text ma-0 pa-0"
       style="font-size: 48px; line-height: 1"
@@ -14,7 +18,13 @@
 
 <script lang="ts">
 import Vue from "vue";
-export default Vue.extend({});
+export default Vue.extend({
+  computed: {
+    theme(): "light" | "dark" {
+      return this.$vuetify.theme.dark ? "dark" : "light";
+    },
+  },
+});
 </script>
 
 <style lang="scss" scoped>

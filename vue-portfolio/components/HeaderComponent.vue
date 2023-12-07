@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-mutating-props -->
 <template>
   <div>
     <v-system-bar class="toolbar" color="primary" height="66" elevation="0">
@@ -27,7 +28,7 @@
           depressed
           @click="toggleMenuVisibility"
         >
-          <v-icon size="40" color="background">
+          <v-icon size="40" :color="$vuetify.theme.themes[theme].background">
             {{ showMenu ? "mdi-close" : "mdi-menu" }}
           </v-icon>
         </v-btn>
@@ -35,9 +36,8 @@
     </v-system-bar>
     <div
       v-if="!isMdUp"
-      class="my-navigation-drawer"
+      class="primaryDark my-navigation-drawer"
       :style="{
-        backgroundColor: $vuetify.theme.themes[theme].primaryDark,
         transform: showMenu ? 'translateY(0px)' : 'translateY(-280px)',
       }"
     >
@@ -47,8 +47,11 @@
         justify="center"
       >
         <v-btn
-          class="contrastText--text"
-          :style="{ fontSize: '27px', textTransform: 'none' }"
+          :style="{
+            fontSize: '27px',
+            textTransform: 'none',
+            color: $vuetify.theme.themes[theme].contrastText,
+          }"
           x-large
           elevation="0"
           color="transparent"
@@ -101,20 +104,28 @@ export default Vue.extend({
   },
   data() {
     return {
-      showMenu: false as boolean,
       isDarkMode: false as boolean,
+      showMenu: false as boolean,
       buttonsOptions: [] as ButtonOptionsInterface[],
     };
   },
   computed: {
-    theme() {
+    theme(): "light" | "dark" {
       return this.$vuetify.theme.dark ? "dark" : "light";
     },
   },
   watch: {
     isDarkMode(value) {
-      this.$vuetify.theme.dark = value;
+      this.toggleThemeMode(value);
     },
+  },
+  mounted() {
+    if (!localStorage.getItem("themeMode")) {
+      localStorage.setItem("themeMode", "light");
+    } else {
+      const themeLocalStorage = localStorage.getItem("themeMode");
+      this.isDarkMode = themeLocalStorage !== "light";
+    }
   },
   created() {
     this.buttonsOptions = [
@@ -163,6 +174,10 @@ export default Vue.extend({
   methods: {
     toggleMenuVisibility() {
       this.showMenu = !this.showMenu;
+    },
+    toggleThemeMode(value: boolean) {
+      localStorage.setItem("themeMode", value ? "dark" : "light");
+      this.$vuetify.theme.dark = value;
     },
   },
 });

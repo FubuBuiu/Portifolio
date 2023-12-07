@@ -37,7 +37,6 @@ export default Vue.extend({
   components: {},
   data() {
     return {
-      isDarkMode: false as boolean,
       sectionsRef: {} as SectionsRefType,
     };
   },
@@ -68,11 +67,6 @@ export default Vue.extend({
       projectsSection,
       contactsSection,
     };
-  },
-  methods: {
-    toggleTheme(x: boolean) {
-      this.isDarkMode = x;
-    },
   },
 });
 </script>
