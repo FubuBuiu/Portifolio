@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/no-mutating-props -->
 <template>
   <div>
     <v-system-bar class="toolbar" color="primary" height="66" elevation="0">
@@ -186,11 +185,11 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .toolbar {
-  z-index: 2;
+  z-index: 3;
   position: relative;
 }
 .my-navigation-drawer {
-  z-index: 1;
+  z-index: 2;
   position: absolute;
   width: 100vw;
   padding: 15px;

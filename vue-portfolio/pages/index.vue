@@ -19,7 +19,7 @@
         <SkillsSection />
       </section>
       <section ref="projectsSection">
-        <div class="div4"></div>
+        <ProjectsSection />
       </section>
       <section ref="contactsSection">
         <div class="div5"></div>
