@@ -1,6 +1,7 @@
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  ssr: false,
   head: {
     titleTemplate: "%s - vue-portfolio",
     title: "vue-portfolio",
