@@ -22,7 +22,7 @@
         <ProjectsSection />
       </section>
       <section ref="contactsSection">
-        <div class="div5"></div>
+        <ContactsSection />
       </section>
     </CustomScrollbar>
     <!-- ------------------------------- -->
@@ -71,15 +71,4 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss" scoped>
-.div4,
-.div5 {
-  width: 100%;
-  height: calc(100vh - 66px);
-}
-.div4 {
-  background-color: yellow;
-}
-.div5 {
-  background-color: orange;
-}
 </style>
