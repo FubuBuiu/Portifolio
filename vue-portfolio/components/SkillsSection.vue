@@ -1,5 +1,9 @@
 <template>
-  <v-container fluid class="pa-6" style="position: relative; height: 700px">
+  <v-container
+    fluid
+    class="pa-6 overflow-hidden"
+    style="position: relative; height: 700px"
+  >
     <v-row
       class="primary--text ma-0 pa-0 justify-center"
       style="font-size: 48px; line-height: 1"
