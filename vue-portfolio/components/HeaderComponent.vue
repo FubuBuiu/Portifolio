@@ -5,7 +5,7 @@
         <v-btn
           v-for="button in buttonsOptions"
           :key="button.text"
-          class="button-navigation"
+          class="px-3 button-navigation"
           :style="{ color: $vuetify.theme.themes[theme].contrastText }"
           color="transparent"
           elevation="0"
