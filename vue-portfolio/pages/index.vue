@@ -1,12 +1,28 @@
 <template>
-  <v-app :style="{ background: $vuetify.theme.themes[theme].background }">
+  <v-app
+    :style="{
+      background: $vuetify.theme.themes[theme].background,
+      position: 'relative',
+    }"
+  >
     <!-- ---------HEADER--------- -->
     <HeaderComponent
-      :sections-ref="sectionsRef"
       :is-md-up="isMdUp"
-      :is-mobile="isMobile"
+      style="z-index: 4"
+      :sections-ref="sectionsRef"
+      :is-menu-open="showDrawer"
+      @toogleMenuVisibility="toggleMenuVisibility"
     />
     <!-- ------------------------ -->
+    <!-- ---------MENU--------- -->
+    <CustomDrawer
+      v-if="!isMdUp"
+      style="z-index: 3"
+      :show="showDrawer"
+      :sections-ref="sectionsRef"
+      @toogleVisibility="toggleMenuVisibility"
+    />
+    <!-- ---------------------- -->
     <!-- ------------CONTENT------------ -->
     <CustomScrollbar :scroll-thumb-color="$vuetify.theme.themes[theme].primary">
       <section ref="startSection">
@@ -31,13 +47,14 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { SectionsRefType } from "~/components/HeaderComponent.vue";
+import { SectionsRefType } from "~/types/global";
 
 export default Vue.extend({
   components: {},
   data() {
     return {
       sectionsRef: {} as SectionsRefType,
+      showDrawer: false as boolean,
     };
   },
   computed: {
@@ -47,12 +64,7 @@ export default Vue.extend({
     isMdUp(): boolean {
       return this.$vuetify.breakpoint.width >= 1030;
     },
-    isMobile(): boolean {
-      return this.$vuetify.breakpoint.width <= 600;
-    },
   },
-  watch: {},
-  created() {},
   mounted() {
     const startSection = this.$refs.startSection as HTMLDivElement;
     const aboutMeSection = this.$refs.aboutMeSection as HTMLDivElement;
@@ -67,6 +79,11 @@ export default Vue.extend({
       projectsSection,
       contactsSection,
     };
+  },
+  methods: {
+    toggleMenuVisibility() {
+      this.showDrawer = !this.showDrawer;
+    },
   },
 });
 </script>

@@ -1,29 +1,24 @@
 <template>
   <v-container class="ma-0 pa-6" fluid>
-    <v-row
-      class="primary--text ma-0 pa-0 justify-center"
-      style="font-size: 48px; line-height: 1"
+    <v-row class="primary--text title-section ma-0 pa-0 justify-center"
       >Contatos</v-row
     >
     <v-row class="pa-0 ma-0">
       <v-container
         class="pa-0 ma-0 d-flex align-center"
-        style="height: 400px"
+        style="height: 300px"
         fluid
       >
-        <v-row
-          class="pa-0 ma-0 justify-center align-center"
-          :style="{ gap: '50px' }"
-        >
-          <v-col class="pa-0" cols="auto">
+        <v-row class="pa-0 ma-0 justify-center align-center" style="gap: 35px">
+          <v-col class="pa-0 d-flex" cols="auto">
             <v-container
+              ref="instaContainer"
               class="pa-0 ma-0 d-flex justify-center align-center overflow-hidden animationContainer"
-              @mouseenter="startAnimation('insta')"
-              @mouseleave="stopAnimation('insta')"
               @click="goToInsta"
             >
               <lottie-vue-player
                 ref="insta"
+                :autoplay="isMobile"
                 loop
                 :src="insta"
                 class="insta"
@@ -31,15 +26,15 @@
               />
             </v-container>
           </v-col>
-          <v-col class="pa-0" cols="auto">
+          <v-col class="pa-0 d-flex" cols="auto">
             <v-container
+              ref="linkedinContainer"
               class="pa-0 ma-0 d-flex justify-center align-center overflow-hidden animationContainer"
-              @mouseenter="startAnimation('linkedin')"
-              @mouseleave="stopAnimation('linkedin')"
               @click="goToLinkedin"
             >
               <lottie-vue-player
                 ref="linkedin"
+                :autoplay="isMobile"
                 loop
                 :src="linkedin"
                 class="linkedin"
@@ -47,15 +42,15 @@
               />
             </v-container>
           </v-col>
-          <v-col cols="auto" class="pa-0">
+          <v-col cols="auto" class="pa-0 d-flex">
             <v-container
+              ref="gitHubContainer"
               class="pa-0 ma-0 d-flex justify-center align-center overflow-hidden animationContainer"
-              @mouseenter="startAnimation('gitHub')"
-              @mouseleave="stopAnimation('gitHub')"
               @click="goToGitHub"
             >
               <lottie-vue-player
                 ref="gitHub"
+                :autoplay="isMobile"
                 loop
                 :src="gitHub"
                 class="gitHub"
@@ -63,36 +58,34 @@
               />
             </v-container>
           </v-col>
-          <v-col cols="auto" class="pa-0">
-            <v-tooltip v-model="showEmailTooltip" color="primary" top>
-              <template #activator>
-                <v-container
-                  class="pa-0 ma-0 d-flex justify-center align-center overflow-hidden animationContainer"
-                  @mouseenter="startAnimation('email')"
-                  @mouseleave="stopAnimation('email')"
-                  @click="showToolTip"
-                >
-                  <lottie-vue-player
-                    ref="email"
-                    loop
-                    :src="email"
-                    class="email"
-                    style="background-color: transparent"
-                  />
-                </v-container>
-              </template>
-              <span :style="{ fontSize: '20px' }"> Email copiado </span>
-            </v-tooltip>
+          <v-col cols="auto" class="pa-0 d-flex">
+            <CustomTooltip :text="'Email copiado'" :show="showEmailTooltip">
+              <v-container
+                ref="emailContainer"
+                class="pa-0 ma-0 d-flex justify-center align-center overflow-hidden animationContainer"
+                style="position: relative"
+                @click="showToolTip"
+              >
+                <lottie-vue-player
+                  ref="email"
+                  :autoplay="isMobile"
+                  loop
+                  :src="email"
+                  class="email"
+                  style="background-color: transparent"
+                />
+              </v-container>
+            </CustomTooltip>
           </v-col>
           <v-col cols="auto" class="pa-0">
             <v-container
+              ref="whatsAppContainer"
               class="pa-0 ma-0 d-flex justify-center align-center overflow-hidden animationContainer"
-              @mouseenter="startAnimation('whatsApp')"
-              @mouseleave="stopAnimation('whatsApp')"
               @click="goToWhatsApp"
             >
               <lottie-vue-player
                 ref="whatsApp"
+                :autoplay="isMobile"
                 loop
                 :src="whatsApp"
                 class="whatsApp"
@@ -116,13 +109,50 @@ import whatsAppAnimation from "@/lottie-animations/whatsApp.json";
 export default Vue.extend({
   data() {
     return {
+      show: false,
       insta: JSON.stringify(instagramAnimation),
       linkedin: JSON.stringify(linkedinAnimation),
       gitHub: JSON.stringify(gitHubAnimation),
       email: JSON.stringify(emailAnimation),
       whatsApp: JSON.stringify(whatsAppAnimation),
       showEmailTooltip: false as boolean,
+      contacts: ["insta", "linkedin", "gitHub", "email", "whatsApp"],
+      isMobile: window.matchMedia("(max-device-width: 600px)").matches,
     };
+  },
+  mounted() {
+    if (!this.isMobile) {
+      this.contacts.forEach((contact) => {
+        (this.$refs[`${contact}Container`] as HTMLDivElement)?.addEventListener(
+          "mouseenter",
+          () => {
+            this.startAnimation(contact);
+          }
+        );
+        (this.$refs[`${contact}Container`] as HTMLDivElement)?.addEventListener(
+          "mouseleave",
+          () => {
+            this.stopAnimation(contact);
+          }
+        );
+      });
+    }
+  },
+  beforeDestroy() {
+    this.contacts.forEach((contact) => {
+      (this.$refs[`${contact}Container`] as HTMLDivElement).removeEventListener(
+        "mouseenter",
+        () => {
+          this.startAnimation(contact);
+        }
+      );
+      (this.$refs[`${contact}Container`] as HTMLDivElement).removeEventListener(
+        "mouseleave",
+        () => {
+          this.stopAnimation(contact);
+        }
+      );
+    });
   },
   methods: {
     showToolTip() {
@@ -159,6 +189,10 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.title-section {
+  line-height: 1;
+  font-size: 48px;
+}
 .animationContainer {
   width: 90px;
   height: 90px;
@@ -202,21 +236,28 @@ export default Vue.extend({
     }
   }
   @media screen and (max-device-width: 600px) {
+    width: 65px;
+    height: 65px;
     .insta {
-      width: 90px;
+      width: 75px;
     }
     .linkedin {
-      width: 65px;
+      width: 55px;
     }
     .gitHub {
-      width: 68px;
+      width: 58px;
     }
     .email {
-      width: 110px;
+      width: 90px;
     }
     .whatsApp {
-      width: 65px;
+      width: 55px;
     }
+  }
+}
+@media screen and (max-device-width: 600px) {
+  .title-section {
+    font-size: 38px;
   }
 }
 </style>

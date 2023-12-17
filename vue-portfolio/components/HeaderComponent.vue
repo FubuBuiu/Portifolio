@@ -1,91 +1,50 @@
 <template>
-  <div>
-    <v-system-bar class="toolbar" color="primary" height="66" elevation="0">
-      <v-row v-if="isMdUp" class="v-row" justify="center">
-        <v-btn
-          v-for="button in buttonsOptions"
-          :key="button.text"
-          class="px-3 button-navigation"
-          :style="{ color: $vuetify.theme.themes[theme].contrastText }"
-          color="transparent"
-          elevation="0"
-          tile
-          @click="button.handleClick"
-          >{{ button.text }}</v-btn
-        >
-      </v-row>
-      <div class="switch-area">
-        <CustomSwitch
-          v-model="isDarkMode"
-          :scroll-thumb-color="$vuetify.theme.themes[theme].primary"
-          :scroll-background-color="$vuetify.theme.themes[theme].background"
-        />
-        <v-btn
-          v-if="!isMdUp"
-          class="mx-2"
-          icon
-          elevation="0"
-          depressed
-          @click="toggleMenuVisibility"
-        >
-          <v-icon size="40" :color="$vuetify.theme.themes[theme].background">
-            {{ showMenu ? "mdi-close" : "mdi-menu" }}
-          </v-icon>
-        </v-btn>
-      </div>
-    </v-system-bar>
-    <div
-      v-if="!isMdUp"
-      class="primaryDark my-navigation-drawer"
-      :style="{
-        transform: showMenu ? 'translateY(0px)' : 'translateY(-280px)',
-      }"
-    >
-      <v-row
+  <v-system-bar
+    class="toolbar"
+    v-bind="$attrs"
+    color="primary"
+    height="66"
+    elevation="0"
+  >
+    <v-row v-if="isMdUp" class="v-row" justify="center">
+      <v-btn
         v-for="button in buttonsOptions"
         :key="button.text"
-        justify="center"
+        class="px-3 button-navigation"
+        :style="{ color: $vuetify.theme.themes[theme].contrastText }"
+        color="transparent"
+        elevation="0"
+        tile
+        @click="button.handleClick"
+        >{{ button.text }}</v-btn
       >
-        <v-btn
-          :style="{
-            fontSize: '27px',
-            textTransform: 'none',
-            color: $vuetify.theme.themes[theme].contrastText,
-          }"
-          x-large
-          elevation="0"
-          color="transparent"
-          tile
-          @click="
-            () => {
-              button.handleClick();
-              toggleMenuVisibility();
-            }
-          "
-        >
-          {{ button.text }}
-        </v-btn>
-      </v-row>
+    </v-row>
+    <div class="switch-area">
+      <CustomSwitch
+        v-model="isDarkMode"
+        :scroll-thumb-color="$vuetify.theme.themes[theme].primary"
+        :scroll-background-color="$vuetify.theme.themes[theme].background"
+      />
+      <v-btn
+        v-if="!isMdUp"
+        class="mx-2"
+        icon
+        elevation="0"
+        depressed
+        @click="toogleMenuVisibility"
+      >
+        <v-icon size="40" :color="$vuetify.theme.themes[theme].background">
+          {{ isMenuOpen ? "mdi-close" : "mdi-menu" }}
+        </v-icon>
+      </v-btn>
     </div>
-  </div>
+  </v-system-bar>
 </template>
 
 
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
-
-interface ButtonOptionsInterface {
-  text: string;
-  handleClick: () => void;
-}
-
-export interface SectionsRefType {
-  startSection: HTMLDivElement;
-  aboutMeSection: HTMLDivElement;
-  skillsSection: HTMLDivElement;
-  projectsSection: HTMLDivElement;
-  contactsSection: HTMLDivElement;
-}
+import { ButtonOptionsInterface, SectionsRefType } from "~/types/global";
 
 export default Vue.extend({
   props: {
@@ -97,7 +56,7 @@ export default Vue.extend({
       type: Boolean,
       required: true,
     },
-    isMobile: {
+    isMenuOpen: {
       type: Boolean,
       required: true,
     },
@@ -105,27 +64,20 @@ export default Vue.extend({
   data() {
     return {
       isDarkMode: false as boolean,
-      showMenu: false as boolean,
       buttonsOptions: [] as ButtonOptionsInterface[],
     };
   },
+
   computed: {
     theme(): "light" | "dark" {
       return this.$vuetify.theme.dark ? "dark" : "light";
     },
   },
+
   watch: {
     isDarkMode(value) {
       this.toggleThemeMode(value);
     },
-  },
-  mounted() {
-    if (!localStorage.getItem("themeMode")) {
-      localStorage.setItem("themeMode", "light");
-    } else {
-      const themeLocalStorage = localStorage.getItem("themeMode");
-      this.isDarkMode = themeLocalStorage !== "light";
-    }
   },
   created() {
     this.buttonsOptions = [
@@ -171,34 +123,27 @@ export default Vue.extend({
       },
     ];
   },
+  mounted() {
+    if (!localStorage.getItem("themeMode")) {
+      localStorage.setItem("themeMode", "light");
+    } else {
+      const themeLocalStorage = localStorage.getItem("themeMode");
+      this.isDarkMode = themeLocalStorage !== "light";
+    }
+  },
   methods: {
-    toggleMenuVisibility() {
-      this.showMenu = !this.showMenu;
-    },
     toggleThemeMode(value: boolean) {
       localStorage.setItem("themeMode", value ? "dark" : "light");
       this.$vuetify.theme.dark = value;
+    },
+    toogleMenuVisibility() {
+      this.$emit("toogleMenuVisibility");
     },
   },
 });
 </script>
 
 <style lang="scss" scoped>
-.toolbar {
-  z-index: 3;
-  position: relative;
-}
-.my-navigation-drawer {
-  z-index: 2;
-  position: absolute;
-  width: 100vw;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  transition: transform 0.2s ease;
-  background-color: red;
-}
 .v-row {
   height: 100%;
   .button-navigation {

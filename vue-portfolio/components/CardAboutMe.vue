@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="cardContent">
-      <v-row class="ma-0 pa-0">
+      <v-row class="ma-0 pa-0 flex-direction spacing">
         <v-col class="pa-0" cols="auto">
           <v-card
             flat
@@ -35,14 +35,15 @@
             :style="{
               border: `9px solid ${$vuetify.theme.themes[theme].secondary}`,
               backgroundColor: $vuetify.theme.themes[theme].secondary,
+              width: 'fit-content',
             }"
           >
-            <v-img :src="image" :width="breakpoint900 ? '154' : '193'"></v-img>
+            <v-img :src="image" :width="breakpoint900 ? '154' : '193'" eager />
           </v-card>
         </v-col>
-        <v-col :class="`ma-0 pa-0  ${breakpoint900 ? 'ml-4' : 'ml-10'}`">
-          <v-row class="pa-0 ma-0 mb-2">
-            <v-col :class="`ma-0 pa-0 ${breakpoint900 ? 'mb-2' : 'mr-1'}`">
+        <v-col class="ma-0 pa-0">
+          <v-row class="pa-0 ma-0 margin-bottom flex-direction spacing">
+            <v-col class="ma-0 pa-0">
               <v-card
                 class="pl-2 py-2 rounded-lg"
                 :style="{
@@ -65,7 +66,7 @@
                 </v-card-text>
               </v-card>
             </v-col>
-            <v-col :class="`ma-0 pa-0 ${!breakpoint900 ?? 'ml-1'}`">
+            <v-col class="ma-0 pa-0">
               <v-card
                 class="pl-2 py-2 rounded-lg"
                 :style="{
@@ -89,8 +90,8 @@
               </v-card>
             </v-col>
           </v-row>
-          <v-row class="pa-0 ma-0 mb-2">
-            <v-col :class="`ma-0 pa-0 ${breakpoint900 ? 'mb-2' : 'mr-1'}`">
+          <v-row class="pa-0 ma-0 margin-bottom flex-direction spacing">
+            <v-col class="ma-0 pa-0">
               <v-card
                 class="pl-2 py-2 rounded-lg"
                 :style="{
@@ -113,7 +114,7 @@
                 </v-card-text>
               </v-card>
             </v-col>
-            <v-col :class="`ma-0 pa-0 ${!breakpoint900 ?? 'ml-1'}`">
+            <v-col class="ma-0 pa-0">
               <v-card
                 class="pl-2 py-2 rounded-lg"
                 :style="{
@@ -241,6 +242,11 @@ export default Vue.extend({
   rotate: 35deg;
 }
 
+.spacing {
+  row-gap: 8px;
+  column-gap: 15px;
+}
+
 .htmlColor {
   color: #e44d26;
 }
@@ -266,6 +272,9 @@ export default Vue.extend({
   font-size: 20px;
 }
 
+.margin-bottom {
+  margin-bottom: 8px !important;
+}
 .card {
   width: 900px;
   height: auto;
@@ -352,6 +361,10 @@ export default Vue.extend({
   @media screen and (max-device-width: 399px) {
     .card {
       width: 100%;
+    }
+    .flex-direction {
+      flex-direction: column !important;
+      align-items: center;
     }
   }
 }

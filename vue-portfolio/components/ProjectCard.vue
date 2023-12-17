@@ -1,94 +1,122 @@
 <template>
-  <div class="cardArea">
-    <span class="white--text titleOffCard" style="font-size: 28px">
+  <v-row class="ma-0 pa-0 justify-center">
+    <span class="mb-3 primary--text text-center titleOffCard">
       {{ project.title }}
     </span>
-    <div class="card" @click="handleShowDialog">
-      <span class="white--text titleInsideCard" style="font-size: 28px">
-        {{ project.title }}
-      </span>
-      <div
-        class="backgroundImage"
-        :style="{
-          backgroundImage: `url(${project.image})`,
-        }"
-      ></div>
-    </div>
-    <div class="primary backlight"></div>
-    <v-dialog
-      v-model="showDialog"
-      width="700"
-      :overlay-color="$vuetify.theme.dark ? 'white' : undefined"
-      :overlay-opacity="$vuetify.theme.dark ? '0.2' : undefined"
-    >
-      <v-card
-        elevation="0"
-        :style="{ backgroundColor: $vuetify.theme.themes[theme].background }"
-      >
-        <v-card-title
-          class="primary--text justify-center"
-          style="font-size: 34px; position: relative"
-        >
+    <div class="cardArea">
+      <div class="card" @click="handleShowDialog">
+        <span class="white--text titleInsideCard">
           {{ project.title }}
-          <v-btn class="mt-2 mr-2 close-dialog-button" icon>
-            <v-icon
-              size="30"
-              :color="closeButtonColor"
-              @mouseover="isMouseOverCloseIcon"
-              @mouseleave="isMouseOverCloseIcon"
-            >
-              mdi-close
-            </v-icon>
-          </v-btn>
-        </v-card-title>
-        <v-img class="mx-auto mt-5" :src="project.image" width="500" />
-        <v-card-text class="primary--text mt-5" style="font-size: 16px">
-          {{ project.description }}
-          <v-row class="ma-0 mt-3 pa-0"> Desenvolvido com: </v-row>
-          <v-row class="pa-0 ma-0" style="gap: 10px">
-            <v-col
-              v-for="(icon, index) in toolsUsed"
-              :key="index"
-              cols="auto"
-              class="pa-0 d-flex align-end"
-            >
-              <component
-                :is="icon"
-                :height="'35'"
-                :font-size="'30'"
-                :is-light-icon="$vuetify.theme.dark"
-              />
-            </v-col>
-          </v-row>
-        </v-card-text>
-        <v-card-actions class="justify-center">
-          <v-btn
-            class="text-capitalize"
-            style="font-size: 15px"
-            color="primary"
-            depressed
-            large
-            target="_blank"
-            :href="project.gitHubLink"
+        </span>
+        <div
+          class="backgroundImage"
+          :style="{
+            backgroundImage: `url(${project.image})`,
+          }"
+        ></div>
+      </div>
+      <div class="primary backlight"></div>
+      <v-dialog
+        v-model="showDialog"
+        width="700"
+        :overlay-color="$vuetify.theme.dark ? 'white' : undefined"
+        :overlay-opacity="$vuetify.theme.dark ? '0.2' : undefined"
+        :fullscreen="isMobile"
+      >
+        <v-card
+          elevation="0"
+          :rounded="isMobile ? '0' : undefined"
+          :style="{
+            backgroundColor: $vuetify.theme.themes[theme].background,
+            position: 'relative',
+          }"
+        >
+          <v-card-title
+            class="primary--text justify-center px-12"
+            :style="{
+              fontSize: isMobile ? '28px' : '34px',
+              position: 'relative',
+            }"
           >
-            Repositório
-          </v-btn>
-          <v-btn
-            v-if="project.link"
-            class="text-capitalize"
-            style="font-size: 15px"
-            color="primary"
-            depressed
-            large
-            target="_blank"
-            :href="project.link"
+            {{ project.title }}
+            <v-btn class="mt-2 mr-2 close-dialog-button" icon>
+              <v-icon
+                size="30"
+                :color="isMobile ? 'primary' : closeButtonColor"
+                @mouseover="isMouseOverCloseIcon"
+                @mouseleave="isMouseOverCloseIcon"
+                @click="handleShowDialog"
+              >
+                mdi-close
+              </v-icon>
+            </v-btn>
+          </v-card-title>
+          <div class="mt-5 mx-6">
+            <v-img
+              class="mx-auto"
+              :src="project.image"
+              :width="isMobile ? undefined : 500"
+              eager
+            />
+          </div>
+          <v-card-text
+            class="primary--text mt-5 flex-grow-1"
+            style="font-size: 16px"
           >
-            Testar projeto
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </div>
+            {{ project.description }}
+            <v-row class="ma-0 mt-3 pa-0"> Desenvolvido com: </v-row>
+            <v-row class="pa-0 ma-0" style="gap: 10px">
+              <v-col
+                v-for="(icon, index) in toolsUsed"
+                :key="index"
+                cols="auto"
+                class="pa-0 d-flex align-end"
+              >
+                <component
+                  :is="icon"
+                  :height="'35'"
+                  :font-size="'30'"
+                  :is-light-icon="$vuetify.theme.dark"
+                />
+              </v-col>
+            </v-row>
+          </v-card-text>
+          <v-card-actions
+            class="justify-center"
+            :style="
+              isMobile
+                ? { position: 'absolute', width: '100%', bottom: 0 }
+                : undefined
+            "
+          >
+            <v-btn
+              class="text-capitalize"
+              style="font-size: 15px"
+              color="primary"
+              depressed
+              large
+              target="_blank"
+              :href="project.gitHubLink"
+            >
+              Repositório
+            </v-btn>
+            <v-btn
+              v-if="project.link"
+              class="text-capitalize"
+              style="font-size: 15px"
+              color="primary"
+              depressed
+              large
+              target="_blank"
+              :href="project.link"
+            >
+              Testar projeto
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </div>
+  </v-row>
 </template>
 
 <script lang="ts">
@@ -160,6 +188,7 @@ export default Vue.extend({
       showDialog: false as boolean,
       isCloseIconOver: false as boolean,
       toolsUsed: [] as Vue.Component[],
+      isMobile: window.matchMedia("(max-device-width: 600px)").matches,
     };
   },
   computed: {
@@ -251,6 +280,7 @@ export default Vue.extend({
 
 .titleOffCard {
   display: none;
+  font-size: 20px;
 }
 .cardArea {
   width: 460px;
@@ -280,6 +310,7 @@ export default Vue.extend({
     cursor: pointer;
     .titleInsideCard {
       opacity: 0;
+      font-size: 28px;
       transition: opacity 0.2s linear;
     }
     .backgroundImage {

@@ -1,16 +1,13 @@
 <template>
   <v-container
-    class="pa-6"
+    class="pa-0 py-6"
     :style="{ backgroundColor: $vuetify.theme.themes[theme].secondary }"
     fluid
   >
-    <v-row
-      class="primary--text ma-0 pa-0"
-      style="font-size: 48px; line-height: 1"
-      justify="center"
+    <v-row class="primary--text ma-0 mx-6 pa-0 title-section" justify="center"
       >Sobre mim</v-row
     >
-    <v-row class="ma-0 pa-0" justify="center" align="center">
+    <v-row class="ma-0 horizontal-margin pa-0" justify="center" align="center">
       <CardAboutMe />
     </v-row>
   </v-container>
@@ -28,4 +25,18 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.title-section {
+  line-height: 1;
+  font-size: 48px;
+}
+@media screen and (max-device-width: 600px) {
+  .title-section {
+    font-size: 38px;
+  }
+  @media screen and (max-device-width: 399px) {
+    .horizontal-margin {
+      margin: 0 24px !important;
+    }
+  }
+}
 </style>

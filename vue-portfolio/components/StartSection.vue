@@ -1,26 +1,27 @@
 <template>
-  <v-container class="container-size pa-6">
-    <v-row class="font-size ma-0 mt-10 justify-center primary--text text-center"
-      >Esse portifólio foi feito em Vue.js</v-row
+  <v-container class="container-config pa-6 d-flex flex-column">
+    <v-row
+      class="ma-0 flex-grow-0 title-top-margin justify-center primary--text text-center font-size"
     >
-    <v-row class="justify-center ma-0 mt-15">
-      <lottie-vue-player
-        autoplay
-        :src="vueLottie"
-        style="width: auto; height: 150px; background-color: transparent"
-      >
-      </lottie-vue-player>
+      Esse portfólio foi feito em Vue.js
     </v-row>
-    <v-row class="font-size ma-0 mt-15 justify-center primary--text">+</v-row>
-    <v-row class="ma-0 mt-15 justify-center">
+    <v-row class="justify-center ma-0 flex-grow-0">
+      <lottie-vue-player autoplay :src="vueLottie" class="lottie" />
+    </v-row>
+    <v-row
+      class="ma-0 flex-grow-0 justify-center primary--text"
+      style="font-size: 40px"
+      >+</v-row
+    >
+    <v-row class="ma-0 justify-center flex-grow-0 space-between-icons">
       <v-col
         v-for="(icon, index) in icons"
         :key="index"
-        class="px-6"
+        class="pa-0"
         align="center"
         cols="auto"
       >
-        <component :is="icon" :height="'80'"></component>
+        <component :is="icon" class="icon-size"></component>
       </v-col>
     </v-row>
   </v-container>
@@ -53,11 +54,42 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.container-size {
+.container-config {
   min-height: calc(100vh - 66px);
   width: 100vw;
+  row-gap: 80px;
+}
+.title-top-margin {
+  margin-top: 40px !important;
 }
 .font-size {
   font-size: 34px;
+}
+.space-between-icons {
+  column-gap: 40px;
+  row-gap: 20px;
+}
+.icon-size {
+  height: 80px;
+}
+.lottie {
+  height: 150px;
+  background-color: transparent;
+}
+@media screen and (max-device-width: 600px) {
+  .title-top-margin {
+    margin-top: 0px !important;
+  }
+  .icon-size {
+    height: 65px;
+  }
+  @media screen and (max-device-width: 400px) {
+    .font-size {
+      font-size: 30px;
+    }
+    .container-config {
+      row-gap: 50px;
+    }
+  }
 }
 </style>
