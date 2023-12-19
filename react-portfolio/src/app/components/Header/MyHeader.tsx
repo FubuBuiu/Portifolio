@@ -178,7 +178,7 @@ export function MyHeader({
             ))}
           </ToggleButtonGroup>
           <Box position={"absolute"} right={0} mr={2}>
-            <Stack direction={"row"} spacing={3} alignItems={"center"}>
+            <Stack direction={"row"} spacing={1} alignItems={"center"}>
               <CustomSwitch
                 onChange={toggleTheme}
                 checked={theme.palette.mode === "dark" ? true : false}

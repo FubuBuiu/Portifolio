@@ -13,7 +13,7 @@
   .linkedin,
   .gitHub,
   .email,
-  .whatsapp {
+  .whatsApp {
     transition: transform 0.2s linear;
   }
   .insta {
@@ -28,7 +28,7 @@
   .email {
     width: 125px;
   }
-  .whatsapp {
+  .whatsApp {
     width: 75px;
   }
   @media (hover: hover) and (pointer: fine) {
@@ -39,26 +39,28 @@
       .linkedin,
       .gitHub,
       .email,
-      .whatsapp {
+      .whatsApp {
         transform: scale(1.5);
       }
     }
   }
   @media screen and (max-device-width: 600px) {
+    width: 65px;
+    height: 65px;
     .insta {
-      width: 90px;
+      width: 75px;
     }
     .linkedin {
-      width: 65px;
+      width: 55px;
     }
     .gitHub {
-      width: 68px;
+      width: 58px;
     }
     .email {
-      width: 110px;
+      width: 90px;
     }
-    .whatsapp {
-      width: 65px;
+    .whatsApp {
+      width: 55px;
     }
   }
 }

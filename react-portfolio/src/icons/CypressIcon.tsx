@@ -22,8 +22,8 @@ export function CypressIcon({
           y1="44.028%"
           y2="58.406%"
         >
-          <stop offset="0%" stop-color={isLightIcon ? "#92DFBF" : "#315C55"} />
-          <stop offset="100%" stop-color={isLightIcon ? "white" : "#09293F"} />
+          <stop offset="0%" stopColor={isLightIcon ? "#92DFBF" : "#315C55"} />
+          <stop offset="100%" stopColor={isLightIcon ? "white" : "#09293F"} />
         </linearGradient>
         <linearGradient
           id="logosCypressIcon1"
@@ -32,10 +32,10 @@ export function CypressIcon({
           y1="27.262%"
           y2="100%"
         >
-          <stop offset="0%" stop-color={isLightIcon ? "#74D6AD" : "#4FB38D"} />
+          <stop offset="0%" stopColor={isLightIcon ? "#74D6AD" : "#4FB38D"} />
           <stop
             offset="100%"
-            stop-color={isLightIcon ? "#92DFBF" : "#315C55"}
+            stopColor={isLightIcon ? "#92DFBF" : "#315C55"}
           />
         </linearGradient>
         <linearGradient
@@ -45,10 +45,10 @@ export function CypressIcon({
           y1="50%"
           y2="54.96%"
         >
-          <stop offset="0%" stop-color={isLightIcon ? "#74D6AD" : "#4FB38D"} />
+          <stop offset="0%" stopColor={isLightIcon ? "#74D6AD" : "#4FB38D"} />
           <stop
             offset="100%"
-            stop-color={isLightIcon ? "#74D6AD" : "#97DEC0"}
+            stopColor={isLightIcon ? "#74D6AD" : "#97DEC0"}
           />
         </linearGradient>
         <linearGradient
@@ -58,9 +58,9 @@ export function CypressIcon({
           y1="30.892%"
           y2="95.794%"
         >
-          <stop offset="0%" stop-color={isLightIcon ? "#74D6AD" : "#97DEC0"} />
-          <stop offset="100%" stop-color="ivory" stop-opacity="0" />
-          <stop offset="100%" stop-color="ivory" stop-opacity="0" />
+          <stop offset="0%" stopColor={isLightIcon ? "#74D6AD" : "#97DEC0"} />
+          <stop offset="100%" stopColor="ivory" stopOpacity="0" />
+          <stop offset="100%" stopColor="ivory" stopOpacity="0" />
         </linearGradient>
       </defs>
       <path

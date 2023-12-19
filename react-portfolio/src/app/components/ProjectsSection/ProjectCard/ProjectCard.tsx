@@ -29,6 +29,9 @@ import { HtmlIcon } from "@/icons/HtmlIcon";
 import { CssIcon } from "@/icons/CssIcon";
 import { ReactIcon } from "@/icons/ReactIcon";
 import { VueIcon } from "@/icons/VueIcon";
+import { VuetifyIcon } from "@/icons/VuetifyIcon";
+import { FlutterIcon } from "@/icons/FlutterIcon";
+import { StyledComponentsIcon } from "@/icons/StyledComponentsIcon";
 
 enum ToolsEnum {
   VUETIFY = "VUETIFY",
@@ -64,10 +67,9 @@ export function ProjectCard({
     setIsHover(false);
     setShowDialog(!showDialog);
   };
-
   const handleToolsUsed = () => {
     let toolsList = [];
-    const iconHeight = deviceMatches ? 30 : 40;
+    const iconHeight = deviceMatches ? 30 : 35;
     for (const tool of project.toolsUsed) {
       switch (tool) {
         case ToolsEnum.HTML:
@@ -118,6 +120,16 @@ export function ProjectCard({
         case ToolsEnum.VUE:
           toolsList.push(<VueIcon key={ToolsEnum.VUE} height={iconHeight} />);
           break;
+        case ToolsEnum.VUETIFY:
+          toolsList.push(<VuetifyIcon key={ToolsEnum.VUETIFY} height={iconHeight} />);
+          break;
+        case ToolsEnum.FLUTTER:
+          toolsList.push(<FlutterIcon key={ToolsEnum.FLUTTER} height={iconHeight} />);
+          break;
+        case ToolsEnum.STYLED_COMPONENTS:
+          toolsList.push(<StyledComponentsIcon key={ToolsEnum.STYLED_COMPONENTS}
+            fontSize={29} isLightIcon={theme.palette.mode === "dark"} />);
+          break;
         case ToolsEnum.REACT:
           toolsList.push(
             <ReactIcon key={ToolsEnum.REACT} height={iconHeight} />
@@ -162,13 +174,20 @@ export function ProjectCard({
         open={showDialog}
         onClose={handleShowDialog}
         fullScreen={deviceMatches}
-        PaperProps={{ sx: { borderRadius: 2 } }}
+        sx={{
+          '& .MuiPaper-root': {
+            background: theme.palette.background.default,
+            borderRadius: deviceMatches ? 0 : 2,
+          },
+        }}
       >
         <DialogTitle
           textAlign={"center"}
           variant={"h4"}
-          fontSize={deviceMatches ? 30 : undefined}
+          fontSize={deviceMatches ? 28 : undefined}
           position={"relative"}
+          mb={2}
+          style={{paddingRight: 50, paddingLeft: 50}}
         >
           {project.title}
           <IconButton
@@ -180,11 +199,11 @@ export function ProjectCard({
           >
             <CloseIcon
               width={deviceMatches ? 35 : 30}
-              color={isHover ? theme.palette.primary.main : "#6B6B6B"}
+              color={deviceMatches ? theme.palette.primary.main : isHover ? theme.palette.primary.main : "#6B6B6B"}
             />
           </IconButton>
         </DialogTitle>
-        <DialogContent>
+        <DialogContent >
           <Stack mb={1} direction={"row"} justifyContent={"center"}>
             <Image
               src={project.image}
@@ -198,18 +217,20 @@ export function ProjectCard({
           </Stack>
           <DialogContentText
             sx={{ wordBreak: "break-word" }}
+            mt={3}
             color={"primary.main"}
           >
             {project.description}
           </DialogContentText>
           <Box mt={2}>
             <Typography>Desenvolvido com:</Typography>
-            <Stack direction={"row"} columnGap={1}>
+            <Stack direction={"row"} columnGap={1.5} rowGap={1} useFlexGap
+        flexWrap={"wrap"}>
               <>{handleToolsUsed()}</>
             </Stack>
           </Box>
         </DialogContent>
-        <DialogActions sx={{ justifyContent: "center" }}>
+        <DialogActions sx={{ justifyContent: "center"}}>
           <Button
             size="large"
             sx={{ textTransform: "none" }}

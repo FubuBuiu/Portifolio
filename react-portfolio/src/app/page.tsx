@@ -51,12 +51,11 @@ export default function Home() {
     setThemeMode(themeLocalStorage as PaletteMode);
   }, []);
 
-  //TODO Rever a responsividade do site todo para mobile
   return (
     <ThemeProvider theme={theme(themeMode!)}>
       <MyHeader toggleTheme={toggleTheme} sectionRefs={sectionRefs} />
       <CustomScrollbar>
-        <Paper>
+        <Paper sx={{backgroundColor: 'background.default'}}>
           <section ref={startSectionRef}>
             <StartSection deviceMatches={deviceMatches} />
           </section>
