@@ -12,12 +12,12 @@ function clickAction(id) {
       title.style.color = vueColor;
       containerBlueImage.style.width = "0%";
       setTimeout(() => {
-        window.location.href = "link-do-portfólio-vue";
+        window.location.href = "https://brendon-angelo-vue-portfolio.web.app/";
       }, 700);
       return;
     }
 
-    window.location.href = "link-do-portfólio-vue";
+    window.location.href = "https://brendon-angelo-vue-portfolio.web.app/";
   } else {
     if (window.innerWidth <= 900) {
       const containerBlueImage = document.querySelector(
@@ -28,11 +28,11 @@ function clickAction(id) {
       title.style.color = reactColor;
       containerBlueImage.style.width = "100%";
       setTimeout(() => {
-        window.location.href = "link-do-portfólio-react";
+        window.location.href = "https://brendon-angelo-react-portfolio.web.app/";
       }, 700);
       return;
     }
-    window.location.href = "link-do-portfólio-react";
+    window.location.href = "https://brendon-angelo-react-portfolio.web.app/";
   }
 }
 
