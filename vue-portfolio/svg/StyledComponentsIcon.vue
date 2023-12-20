@@ -5,8 +5,9 @@
       lineHeight: 1,
       color: isLightIcon ? 'white' : 'black',
     }"
-    >{{ "<💅>" }}</span
   >
+    {{ "<💅>" }}
+  </span>
 </template>
 
 <script lang="ts">
