@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Player } from "@lottiefiles/react-lottie-player";
-import { Box, Container, Fade, Grid, Tooltip, Typography } from "@mui/material";
+import { Box, Fade, Grid, Tooltip, Typography } from "@mui/material";
 import emailAnimation from "@/lottie-animations/email.json";
 import gitHubAnimation from "@/lottie-animations/gitHub.json";
 import linkedinAnimation from "@/lottie-animations/linkedin.json";
@@ -21,7 +21,6 @@ export function ContactsSection({ deviceMatches }: { deviceMatches: boolean }) {
       }, 2000);
     }
   };
-
   return (
     <Box padding={3} display={"flex"} flexDirection={"column"}>
       <Typography

@@ -2,7 +2,7 @@
   <v-container
     fluid
     class="pa-6"
-    :style="{ backgroundColor: $vuetify.theme.themes[theme].secondary }"
+    :style="{ backgroundColor: $vuetify.theme.currentTheme.secondary }"
   >
     <v-row class="primary--text ma-0 pa-0 title-section justify-center"
       >Projetos</v-row
@@ -33,11 +33,6 @@ export default Vue.extend({
       loading: false as boolean,
       projects: [] as Project[],
     };
-  },
-  computed: {
-    theme(): "light" | "dark" {
-      return this.$vuetify.theme.dark ? "dark" : "light";
-    },
   },
   async created() {
     this.loading = true;

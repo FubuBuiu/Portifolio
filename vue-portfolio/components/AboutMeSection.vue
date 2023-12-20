@@ -1,7 +1,7 @@
 <template>
   <v-container
     class="pa-0 py-6"
-    :style="{ backgroundColor: $vuetify.theme.themes[theme].secondary }"
+    :style="{ backgroundColor: $vuetify.theme.currentTheme.secondary }"
     fluid
   >
     <v-row class="primary--text ma-0 mx-6 pa-0 title-section" justify="center"
@@ -16,11 +16,11 @@
 <script lang="ts">
 import Vue from "vue";
 export default Vue.extend({
-  computed: {
-    theme(): "light" | "dark" {
-      return this.$vuetify.theme.dark ? "dark" : "light";
-    },
-  },
+  // computed: {
+  //   theme(): "light" | "dark" {
+  //     return this.$vuetify.theme.dark ? "dark" : "light";
+  //   },
+  // },
 });
 </script>
 

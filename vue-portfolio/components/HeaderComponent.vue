@@ -11,7 +11,7 @@
         v-for="button in buttonsOptions"
         :key="button.text"
         class="px-3 button-navigation"
-        :style="{ color: $vuetify.theme.themes[theme].contrastText }"
+        :style="{ color: $vuetify.theme.currentTheme.contrastText }"
         color="transparent"
         elevation="0"
         tile
@@ -22,8 +22,8 @@
     <div class="switch-area">
       <CustomSwitch
         v-model="isDarkMode"
-        :scroll-thumb-color="$vuetify.theme.themes[theme].primary"
-        :scroll-background-color="$vuetify.theme.themes[theme].background"
+        :scroll-thumb-color="$vuetify.theme.currentTheme.primary"
+        :scroll-background-color="$vuetify.theme.currentTheme.background"
       />
       <v-btn
         v-if="!isMdUp"
@@ -33,7 +33,7 @@
         depressed
         @click="toogleMenuVisibility"
       >
-        <v-icon size="40" :color="$vuetify.theme.themes[theme].background">
+        <v-icon size="40" :color="$vuetify.theme.currentTheme.background">
           {{ isMenuOpen ? "mdi-close" : "mdi-menu" }}
         </v-icon>
       </v-btn>
@@ -66,12 +66,6 @@ export default Vue.extend({
       isDarkMode: false as boolean,
       buttonsOptions: [] as ButtonOptionsInterface[],
     };
-  },
-
-  computed: {
-    theme(): "light" | "dark" {
-      return this.$vuetify.theme.dark ? "dark" : "light";
-    },
   },
 
   watch: {

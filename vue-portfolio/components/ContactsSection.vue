@@ -59,7 +59,11 @@
             </v-container>
           </v-col>
           <v-col cols="auto" class="pa-0 d-flex">
-            <CustomTooltip :text="'Email copiado'" :show="showEmailTooltip">
+            <CustomTooltip
+              :text="'Email copiado'"
+              :text-color="$vuetify.theme.currentTheme.background"
+              :show="showEmailTooltip"
+            >
               <v-container
                 ref="emailContainer"
                 class="pa-0 ma-0 d-flex justify-center align-center overflow-hidden animationContainer"

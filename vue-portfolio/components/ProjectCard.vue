@@ -27,7 +27,7 @@
           elevation="0"
           :rounded="isMobile ? '0' : undefined"
           :style="{
-            backgroundColor: $vuetify.theme.themes[theme].background,
+            backgroundColor: $vuetify.theme.currentTheme.background,
             position: 'relative',
           }"
         >
@@ -74,7 +74,7 @@
               >
                 <component
                   :is="icon"
-                  :height="'35'"
+                  :height="isMobile ? '30' : '35'"
                   :font-size="'30'"
                   :is-light-icon="$vuetify.theme.dark"
                 />
@@ -192,9 +192,6 @@ export default Vue.extend({
     };
   },
   computed: {
-    theme(): "light" | "dark" {
-      return this.$vuetify.theme.dark ? "dark" : "light";
-    },
     closeButtonColor(): string {
       return this.isCloseIconOver ? "primary" : "#6B6B6B";
     },

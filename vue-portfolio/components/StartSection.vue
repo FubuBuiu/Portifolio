@@ -2,8 +2,9 @@
   <v-container class="container-config pa-6 d-flex flex-column">
     <v-row
       class="ma-0 flex-grow-0 title-top-margin justify-center primary--text text-center font-size"
+      style="line-height: 1"
     >
-      Esse portfólio foi feito em Vue.js
+      Este portfólio foi feito em Vue.js
     </v-row>
     <v-row class="justify-center ma-0 flex-grow-0">
       <lottie-vue-player autoplay :src="vueLottie" class="lottie" />

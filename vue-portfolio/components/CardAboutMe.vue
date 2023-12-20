@@ -33,8 +33,8 @@
             flat
             class="pa-0 rounded-lg"
             :style="{
-              border: `9px solid ${$vuetify.theme.themes[theme].secondary}`,
-              backgroundColor: $vuetify.theme.themes[theme].secondary,
+              border: `9px solid ${$vuetify.theme.currentTheme.secondary}`,
+              backgroundColor: $vuetify.theme.currentTheme.secondary,
               width: 'fit-content',
             }"
           >
@@ -48,7 +48,7 @@
                 class="pl-2 py-2 rounded-lg"
                 :style="{
                   height: '100%',
-                  backgroundColor: $vuetify.theme.themes[theme].secondary,
+                  backgroundColor: $vuetify.theme.currentTheme.secondary,
                 }"
                 flat
               >
@@ -71,7 +71,7 @@
                 class="pl-2 py-2 rounded-lg"
                 :style="{
                   height: '100%',
-                  backgroundColor: $vuetify.theme.themes[theme].secondary,
+                  backgroundColor: $vuetify.theme.currentTheme.secondary,
                 }"
                 flat
               >
@@ -96,7 +96,7 @@
                 class="pl-2 py-2 rounded-lg"
                 :style="{
                   height: '100%',
-                  backgroundColor: $vuetify.theme.themes[theme].secondary,
+                  backgroundColor: $vuetify.theme.currentTheme.secondary,
                 }"
                 flat
               >
@@ -119,7 +119,7 @@
                 class="pl-2 py-2 rounded-lg"
                 :style="{
                   height: '100%',
-                  backgroundColor: $vuetify.theme.themes[theme].secondary,
+                  backgroundColor: $vuetify.theme.currentTheme.secondary,
                 }"
                 flat
               >
@@ -143,7 +143,7 @@
               class="pl-2 py-2 rounded-lg"
               :style="{
                 height: '100%',
-                backgroundColor: $vuetify.theme.themes[theme].secondary,
+                backgroundColor: $vuetify.theme.currentTheme.secondary,
               }"
               flat
             >
@@ -180,7 +180,7 @@
           class="pl-2 py-2 rounded-lg"
           :style="{
             height: '100%',
-            backgroundColor: $vuetify.theme.themes[theme].secondary,
+            backgroundColor: $vuetify.theme.currentTheme.secondary,
           }"
           flat
         >
@@ -226,9 +226,6 @@ export default Vue.extend({
   computed: {
     breakpoint900(): boolean {
       return this.$vuetify.breakpoint.width <= 900;
-    },
-    theme(): "light" | "dark" {
-      return this.$vuetify.theme.dark ? "dark" : "light";
     },
   },
 });

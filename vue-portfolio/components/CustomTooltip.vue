@@ -1,8 +1,8 @@
 <template>
   <div class="tooltip-container d-flex justify-center">
     <div
-      class="primary white--text tooltip"
-      :style="{ opacity: tooltipOpacity }"
+      class="primary tooltip"
+      :style="{ opacity: tooltipOpacity, color: textColor }"
     >
       {{ text }}
     </div>
@@ -17,6 +17,10 @@ export default Vue.extend({
     text: {
       type: String,
       required: true,
+    },
+    textColor: {
+      type: String,
+      default: "white",
     },
     show: {
       type: Boolean,
