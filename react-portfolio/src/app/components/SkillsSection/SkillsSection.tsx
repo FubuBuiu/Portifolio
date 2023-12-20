@@ -19,7 +19,7 @@ import vueAnimation from '@/lottie-animations/vueWalking.json'
 import styles from "./styles.module.scss";
 
 const animationList = [
-  htmlAnimation,cssAnimation,javascriptAnimation,typescriptAnimation,vueAnimation,vuetifyAnimation,nuxtAnimation,reactAnimation,muiAnimation,nextAnimation,styledComponentsAnimation,sassAnimation,jestAnimation,cypressAnimation,lottieAnimation,flutterAnimation]
+  htmlAnimation,cssAnimation,javascriptAnimation,typescriptAnimation,vueAnimation,vuetifyAnimation,nuxtAnimation,reactAnimation,muiAnimation,nextAnimation,styledComponentsAnimation,sassAnimation,jestAnimation,cypressAnimation,lottieAnimation,flutterAnimation].reverse()
 
 export function SkillsSection({ deviceMatches }: { deviceMatches: boolean }) {
   return (
@@ -40,7 +40,7 @@ export function SkillsSection({ deviceMatches }: { deviceMatches: boolean }) {
       </Typography>
       <Box height={'100%'} display={'flex'} alignItems={'center'}>
         <div className={styles.animationsContainer}>
-          {animationList.toReversed().map((animation,index)=>(
+          {animationList.map((animation,index)=>(
               <Player
               key={index}
                 autoplay
