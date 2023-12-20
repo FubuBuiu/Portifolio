@@ -7,7 +7,6 @@ import { collection, getDocs, getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
-// TODO Lembrar de remover essas informações
 const FIREBASE_API_KEY = "YOUR_FIREBASE_KEY";
 const FIREBASE_PROJECT_ID = "YOUR_PROJECT_ID";
 const FIREBASE_MESSAGING_SENDER_ID = "YOUR_MESSAGING_SENDER_ID";
