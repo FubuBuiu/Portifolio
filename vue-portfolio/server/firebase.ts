@@ -8,11 +8,11 @@ import { collection, getDocs, getFirestore } from "firebase/firestore";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 // TODO Lembrar de remover essas informações
-const FIREBASE_API_KEY = "AIzaSyCAvoy34z_Dm-EbpIRTV-LLtB-u8fjUW1Q";
-const FIREBASE_PROJECT_ID = "portfolio-fb195";
-const FIREBASE_MESSAGING_SENDER_ID = "240950936900";
-const FIREBASE_APP_ID = "1:240950936900:web:8f202d5e059a45eff9c311";
-const FIREBASE_MEASUREMENT_ID = "8G2QJG148W";
+const FIREBASE_API_KEY = "YOUR_FIREBASE_KEY";
+const FIREBASE_PROJECT_ID = "YOUR_PROJECT_ID";
+const FIREBASE_MESSAGING_SENDER_ID = "YOUR_MESSAGING_SENDER_ID";
+const FIREBASE_APP_ID = "YOUR_APP_ID";
+const FIREBASE_MEASUREMENT_ID = "YOUR_MEASUREMENT_ID";
 
 const firebaseConfig = {
   apiKey: FIREBASE_API_KEY,
