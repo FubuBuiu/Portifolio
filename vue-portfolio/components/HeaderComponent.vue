@@ -44,9 +44,13 @@
 
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
+import CustomSwitch from "@/components/CustomSwitch.vue";
 import { ButtonOptionsInterface, SectionsRefType } from "~/types/global";
 
 export default Vue.extend({
+  components: {
+    CustomSwitch,
+  },
   props: {
     sectionsRef: {
       type: Object,
@@ -67,7 +71,6 @@ export default Vue.extend({
       buttonsOptions: [] as ButtonOptionsInterface[],
     };
   },
-
   watch: {
     isDarkMode(value) {
       this.toggleThemeMode(value);

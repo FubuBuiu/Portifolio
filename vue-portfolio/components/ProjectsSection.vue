@@ -26,8 +26,14 @@
 
 <script lang="ts">
 import Vue from "vue";
+import CustomSkeletonLoader from "@/components/CustomSkeletonLoader.vue";
+import ProjectCard from "@/components/ProjectCard.vue";
 import { getProjects, Project } from "~/server/firebase";
 export default Vue.extend({
+  components: {
+    CustomSkeletonLoader,
+    ProjectCard,
+  },
   data() {
     return {
       loading: false as boolean,

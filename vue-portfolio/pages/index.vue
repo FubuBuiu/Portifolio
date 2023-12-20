@@ -47,10 +47,27 @@
 
 <script lang="ts">
 import Vue from "vue";
+import HeaderComponent from "@/components/HeaderComponent.vue";
+import CustomDrawer from "@/components/CustomDrawer.vue";
+import CustomScrollbar from "@/components/CustomScrollbar.vue";
+import StartSection from "@/components/StartSection.vue";
+import AboutMeSection from "@/components/AboutMeSection.vue";
+import SkillsSection from "@/components/SkillsSection.vue";
+import ProjectsSection from "@/components/ProjectsSection.vue";
+import ContactsSection from "@/components/ContactsSection.vue";
 import { SectionsRefType } from "~/types/global";
 
 export default Vue.extend({
-  components: {},
+  components: {
+    HeaderComponent,
+    CustomDrawer,
+    CustomScrollbar,
+    StartSection,
+    AboutMeSection,
+    SkillsSection,
+    ProjectsSection,
+    ContactsSection,
+  },
   data() {
     return {
       sectionsRef: {} as SectionsRefType,

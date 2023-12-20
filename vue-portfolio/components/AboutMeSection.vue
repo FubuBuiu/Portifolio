@@ -15,12 +15,11 @@
 
 <script lang="ts">
 import Vue from "vue";
+import CardAboutMe from "@/components/CardAboutMe.vue";
 export default Vue.extend({
-  // computed: {
-  //   theme(): "light" | "dark" {
-  //     return this.$vuetify.theme.dark ? "dark" : "light";
-  //   },
-  // },
+  components: {
+    CardAboutMe,
+  },
 });
 </script>
 

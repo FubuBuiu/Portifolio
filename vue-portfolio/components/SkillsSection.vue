@@ -1,5 +1,9 @@
 <template>
-  <v-container class="pa-6 ma-0 overflow-hidden" style="position: relative">
+  <v-container
+    class="pa-6 ma-0 overflow-hidden"
+    style="position: relative"
+    fluid
+  >
     <v-row class="primary--text ma-auto pa-0 title-section justify-center">
       Habilidades
     </v-row>

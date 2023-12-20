@@ -105,12 +105,16 @@
 
 <script lang="ts">
 import Vue from "vue";
+import CustomTooltip from "@/components/CustomTooltip.vue";
 import instagramAnimation from "@/lottie-animations/insta.json";
 import linkedinAnimation from "@/lottie-animations/linkedin.json";
 import gitHubAnimation from "@/lottie-animations/gitHub.json";
 import emailAnimation from "@/lottie-animations/email.json";
 import whatsAppAnimation from "@/lottie-animations/whatsApp.json";
 export default Vue.extend({
+  components: {
+    CustomTooltip,
+  },
   data() {
     return {
       show: false,

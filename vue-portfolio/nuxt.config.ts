@@ -24,7 +24,7 @@ export default {
   plugins: ["@/plugins/lottie-vue-player.client.ts"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: false,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
