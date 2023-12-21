@@ -35,7 +35,7 @@
             class="primary--text justify-center px-12"
             :style="{
               fontSize: isMobile ? '28px' : '34px',
-              position: 'fixed',
+              position: isMobile ? 'fixed' : 'absolute',
               zIndex: 1,
               width: '100%',
               backgroundColor: $vuetify.theme.currentTheme.background,
@@ -64,7 +64,12 @@
           </div>
           <v-card-text
             class="primary--text mt-5 flex-grow-1"
-            style="font-size: 16px; margin-bottom: 55px; z-index: 0"
+            :style="{
+              fontSize: '16px',
+              marginBottom: isMobile ? '55px' : undefined,
+              paddingBottom: isMobile ? undefined : '65px',
+              zIndex: 0,
+            }"
           >
             {{ project.description }}
             <v-row class="ma-0 mt-3 pa-0"> Desenvolvido com: </v-row>
@@ -87,7 +92,7 @@
           <v-card-actions
             class="justify-center"
             :style="{
-              position: 'fixed',
+              position: isMobile ? 'fixed' : 'absolute',
               zIndex: 1,
               bottom: 0,
               width: '100%',
@@ -196,7 +201,6 @@ export default Vue.extend({
   },
   data() {
     return {
-      cardTitleRef: null as HTMLDivElement | null,
       showDialog: false as boolean,
       isCloseIconOver: false as boolean,
       toolsUsed: [] as Vue.Component[],
@@ -266,10 +270,7 @@ export default Vue.extend({
       return toolsList;
     },
   },
-  mounted() {
-    // this.cardTitleRef = this.$refs.cardTitleRef;
-    console.log(this.$refs.cardTitleRef);
-  },
+
   created() {
     this.toolsUsed = this.handleToolsUsed;
   },
