@@ -31,6 +31,7 @@ import { ReactIcon } from "@/icons/ReactIcon";
 import { VueIcon } from "@/icons/VueIcon";
 import { VuetifyIcon } from "@/icons/VuetifyIcon";
 import { FlutterIcon } from "@/icons/FlutterIcon";
+import { ViteIcon } from "@/icons/ViteIcon";
 import { StyledComponentsIcon } from "@/icons/StyledComponentsIcon";
 
 enum ToolsEnum {
@@ -49,6 +50,7 @@ enum ToolsEnum {
   NUXT = "NUXT",
   NEXT = "NEXT",
   MUI = "MUI",
+  VITE = "VITE",
   STYLED_COMPONENTS = "STYLED_COMPONENTS",
 }
 
@@ -97,6 +99,9 @@ export function ProjectCard({
           break;
         case ToolsEnum.NUXT:
           toolsList.push(<NuxtIcon key={ToolsEnum.NUXT} height={iconHeight} />);
+          break;
+        case ToolsEnum.VITE:
+          toolsList.push(<ViteIcon key={ToolsEnum.VITE} height={iconHeight} />);
           break;
         case ToolsEnum.TS:
           toolsList.push(

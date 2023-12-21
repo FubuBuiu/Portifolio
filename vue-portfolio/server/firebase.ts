@@ -29,6 +29,7 @@ const db = getFirestore(app);
 type Tools =
   | "VUETIFY"
   | "VUE"
+  | "VITE"
   | "REACT"
   | "HTML"
   | "CSS"

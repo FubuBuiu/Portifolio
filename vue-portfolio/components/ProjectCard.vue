@@ -151,6 +151,7 @@ import FlutterIcon from "@/svg/FlutterIcon.vue";
 import HtmlIcon from "@/svg/HtmlIcon.vue";
 import MuiIcon from "@/svg/MuiIcon.vue";
 import JavascriptIcon from "@/svg/JavascriptIcon.vue";
+import ViteIcon from "@/svg/ViteIcon.vue";
 import StyledComponentsIcon from "@/svg/StyledComponentsIcon.vue";
 import JestIcon from "@/svg/JestIcon.vue";
 import { Project } from "@/server/firebase";
@@ -158,6 +159,7 @@ import { Project } from "@/server/firebase";
 enum ToolsEnum {
   VUETIFY = "VUETIFY",
   VUE = "VUE",
+  VITE = "VITE",
   REACT = "REACT",
   HTML = "HTML",
   CSS = "CSS",
@@ -191,6 +193,7 @@ export default Vue.extend({
     MuiIcon,
     JestIcon,
     JavascriptIcon,
+    ViteIcon,
     StyledComponentsIcon,
   },
   props: {
@@ -232,6 +235,9 @@ export default Vue.extend({
             break;
           case ToolsEnum.NUXT:
             toolsList.push(NuxtIcon);
+            break;
+          case ToolsEnum.VITE:
+            toolsList.push(ViteIcon);
             break;
           case ToolsEnum.TS:
             toolsList.push(TypescriptIcon);
