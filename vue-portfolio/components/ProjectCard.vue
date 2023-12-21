@@ -28,14 +28,17 @@
           :rounded="isMobile ? '0' : undefined"
           :style="{
             backgroundColor: $vuetify.theme.currentTheme.background,
-            position: 'relative',
           }"
         >
           <v-card-title
+            ref="cardTitleRef"
             class="primary--text justify-center px-12"
             :style="{
               fontSize: isMobile ? '28px' : '34px',
-              position: 'relative',
+              position: 'fixed',
+              zIndex: 1,
+              width: '100%',
+              backgroundColor: $vuetify.theme.currentTheme.background,
             }"
           >
             {{ project.title }}
@@ -51,7 +54,7 @@
               </v-icon>
             </v-btn>
           </v-card-title>
-          <div class="mt-5 mx-6">
+          <div class="mx-6" style="padding-top: 70px; z-index: 0">
             <v-img
               class="mx-auto"
               :src="project.image"
@@ -61,7 +64,7 @@
           </div>
           <v-card-text
             class="primary--text mt-5 flex-grow-1"
-            style="font-size: 16px"
+            style="font-size: 16px; margin-bottom: 55px; z-index: 0"
           >
             {{ project.description }}
             <v-row class="ma-0 mt-3 pa-0"> Desenvolvido com: </v-row>
@@ -83,15 +86,20 @@
           </v-card-text>
           <v-card-actions
             class="justify-center"
-            :style="
-              isMobile
-                ? { position: 'absolute', width: '100%', bottom: 0 }
-                : undefined
-            "
+            :style="{
+              position: 'fixed',
+              zIndex: 1,
+              bottom: 0,
+              width: '100%',
+              backgroundColor: $vuetify.theme.currentTheme.background,
+            }"
           >
             <v-btn
               class="text-capitalize"
-              style="font-size: 15px"
+              :style="{
+                fontSize: '15px',
+                color: $vuetify.theme.currentTheme.background,
+              }"
               color="primary"
               depressed
               large
@@ -103,7 +111,10 @@
             <v-btn
               v-if="project.link"
               class="text-capitalize"
-              style="font-size: 15px"
+              :style="{
+                fontSize: '15px',
+                color: $vuetify.theme.currentTheme.background,
+              }"
               color="primary"
               depressed
               large
@@ -185,6 +196,7 @@ export default Vue.extend({
   },
   data() {
     return {
+      cardTitleRef: null as HTMLDivElement | null,
       showDialog: false as boolean,
       isCloseIconOver: false as boolean,
       toolsUsed: [] as Vue.Component[],
@@ -253,6 +265,10 @@ export default Vue.extend({
       }
       return toolsList;
     },
+  },
+  mounted() {
+    // this.cardTitleRef = this.$refs.cardTitleRef;
+    console.log(this.$refs.cardTitleRef);
   },
   created() {
     this.toolsUsed = this.handleToolsUsed;

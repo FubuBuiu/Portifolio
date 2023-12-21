@@ -1,9 +1,10 @@
 <template>
   <div v-bind="$attrs">
     <div
-      class="secondary my-navigation-drawer"
+      class="my-navigation-drawer"
       :style="{
         transform: show ? 'translateY(0px)' : 'translateY(-280px)',
+        backgroundColor: $vuetify.theme.currentTheme.secondary,
       }"
     >
       <v-row
@@ -14,7 +15,7 @@
         <v-btn
           class="primary--text"
           :style="{
-            fontSize: '27px',
+            fontSize: '26px',
             textTransform: 'none',
           }"
           x-large

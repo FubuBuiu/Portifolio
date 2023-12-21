@@ -207,11 +207,10 @@ export function ProjectCard({
           <Stack mb={1} direction={"row"} justifyContent={"center"}>
             <Image
               src={project.image}
-              sizes="100vw"
               width={0}
               height={0}
               quality={100}
-              style={{ width: "450px", height: "auto" }}
+              style={{ width: deviceMatches ? "100%" : '450px', height: "auto" }}
               alt=""
             />
           </Stack>
