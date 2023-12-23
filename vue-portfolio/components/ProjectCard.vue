@@ -19,15 +19,13 @@
       <v-dialog
         v-model="showDialog"
         width="700"
-        :overlay-color="$vuetify.theme.dark ? 'white' : undefined"
-        :overlay-opacity="$vuetify.theme.dark ? '0.2' : undefined"
         :fullscreen="isMobile"
       >
         <v-card
           elevation="0"
           :rounded="isMobile ? '0' : undefined"
           :style="{
-            backgroundColor: $vuetify.theme.currentTheme.background,
+            backgroundColor: $vuetify.theme.currentTheme.secondary,
           }"
         >
           <v-card-title
@@ -38,7 +36,7 @@
               position: isMobile ? 'fixed' : 'absolute',
               zIndex: 1,
               width: '100%',
-              backgroundColor: $vuetify.theme.currentTheme.background,
+              backgroundColor: $vuetify.theme.currentTheme.secondary,
             }"
           >
             {{ project.title }}
@@ -96,7 +94,7 @@
               zIndex: 1,
               bottom: 0,
               width: '100%',
-              backgroundColor: $vuetify.theme.currentTheme.background,
+              backgroundColor: $vuetify.theme.currentTheme.secondary,
             }"
           >
             <v-btn
@@ -212,7 +210,7 @@ export default Vue.extend({
   },
   computed: {
     closeButtonColor(): string {
-      return this.isCloseIconOver ? "primary" : "#6B6B6B";
+      return this.isCloseIconOver ? "primary" : "white";
     },
     handleToolsUsed() {
       const toolsList = [];

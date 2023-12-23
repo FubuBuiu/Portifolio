@@ -181,7 +181,7 @@ export function ProjectCard({
         fullScreen={deviceMatches}
         sx={{
           '& .MuiPaper-root': {
-            background: theme.palette.background.default,
+            background: theme.palette.secondary.main,
             borderRadius: deviceMatches ? 0 : 2,
           },
         }}
@@ -192,7 +192,7 @@ export function ProjectCard({
           fontSize={deviceMatches ? 28 : undefined}
           position={"relative"}
           mb={2}
-          style={{paddingRight: 50, paddingLeft: 50}}
+          style={{ paddingRight: 50, paddingLeft: 50 }}
         >
           {project.title}
           <IconButton
@@ -204,7 +204,7 @@ export function ProjectCard({
           >
             <CloseIcon
               width={deviceMatches ? 35 : 30}
-              color={deviceMatches ? theme.palette.primary.main : isHover ? theme.palette.primary.main : "#6B6B6B"}
+              color={deviceMatches ? theme.palette.primary.main : isHover ? theme.palette.primary.main : "white"}
             />
           </IconButton>
         </DialogTitle>
@@ -229,15 +229,15 @@ export function ProjectCard({
           <Box mt={2}>
             <Typography>Desenvolvido com:</Typography>
             <Stack direction={"row"} columnGap={1.5} rowGap={1} useFlexGap
-        flexWrap={"wrap"}>
+              flexWrap={"wrap"}>
               <>{handleToolsUsed()}</>
             </Stack>
           </Box>
         </DialogContent>
-        <DialogActions sx={{ justifyContent: "center"}}>
+        <DialogActions sx={{ justifyContent: "center" }}>
           <Button
             size="large"
-            sx={{ textTransform: "none" }}
+            sx={{ textTransform: "none", "&:hover": { backgroundColor: theme.palette.primary.main } }}
             target="_blank"
             href={project.gitHubLink}
           >
@@ -246,7 +246,7 @@ export function ProjectCard({
           {project.link && (
             <Button
               size="large"
-              sx={{ textTransform: "none" }}
+              sx={{ textTransform: "none", "&:hover": { backgroundColor: theme.palette.primary.main } }}
               target="_blank"
               href={project.link}
             >

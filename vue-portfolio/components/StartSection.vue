@@ -7,7 +7,11 @@
       Este portfólio foi feito em Vue.js
     </v-row>
     <v-row class="justify-center ma-0 flex-grow-0">
-      <lottie-vue-player autoplay :src="vueLottie" class="lottie" />
+      <lottie-vue-player
+        ref="vueAnimationRef"
+        :src="vueLottie"
+        class="lottie"
+      />
     </v-row>
     <v-row
       class="ma-0 flex-grow-0 justify-center primary--text"
@@ -50,6 +54,11 @@ export default Vue.extend({
       vueLottie: JSON.stringify(vueLogoAnimation),
       icons: [NuxtIcon, VuetifyIcon, TypescriptIcon, SassIcon, LottieIcon],
     };
+  },
+  mounted() {
+    setTimeout(() => {
+      (this.$refs.vueAnimationRef as any).togglePlayPause();
+    }, 1300);
   },
 });
 </script>
